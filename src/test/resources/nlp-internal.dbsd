@@ -1,0 +1,117 @@
+OWNER(VEN24INTERNAL)
+USER(VEN24WEBACK)
+USER_ROLE(ROLE_APP_REF)
+
+DEFAULT_TABLE_TABLESPACE(DATA)
+DEFAULT_INDEX_TABLESPACE(INDX)
+TARGET_DBMS(ORACLE)
+
+
+<<----------- in_incident_types STATIC(name) 'The incident types.'  ------------------->>
+  in_incident_type_id   |   NUM(2)   |   NOT_NULL   | 'The unique id'                   ;
+  name                  |   TXT(80)  |   NOT_NULL   | 'The name of the incident type'   ;
+##                                                                                     ##
+  pk_In_incident_types  |  PK(in_incident_type_id)  |                                   ;
+++                                                                                     ++
+(   1, 'Ejercicio de los derechos de acceso según LOPD'                                );
+(   2, 'Ejercicio de los derechos de modificación según LOPD'                          );
+(   3, 'Ejercicio de los derechos de cancelación según LOPD'                           );
+(   4, 'Respuesta a usuarios relativa al ejercicio de sus derechos'                    );
+(   5, 'Comunicaciones con la Agencia de Protección de Datos'                          );
+(   6, 'Comunicaciones con representantes y auditores de la Private Card Industry'     );
+(   7, 'Incidente de seguridad relativo a datos personales'                            );
+(   8, 'Incidente de seguridad relativo a datos financieros'                           );
+(   9, 'Incidente de seguridad relativo a datos de premios'                            );
+(   10, 'Incidente de seguridad: otros...'                                             );
+(   11, 'Realización de una auditoria interna de seguridad'                            );
+(   12, 'Realización de una auditoria externa de seguridad'                            );
+(   13, 'Petición de alta o baja de empleado, o cambio de derechos de acceso a datos'  );
+(   99, 'Otra'                                                                         );
+<<------------------------------------------------------------------------------------->>
+
+
+<<---------------------------------- in_incidents  'The incidents.'  ------------------------------------------->>
+  in_incident_id                 | NUM(13)  | NOT_NULL  | 'The unique id'                                        ;
+  in_incident_type_id            | NUM(2)   | NOT_NULL  | 'The type id'                                          ;
+  internal_notifier              | TXT(8)   | NOT_NULL  | 'Internal user who notifies the incident'              ;
+  internal_authorizer            | TXT(8)   | NOT_NULL  | 'Internal user who authorizes'                         ;
+  description                    | TXT(250) | NOT_NULL  | 'Detailed description'                                 ;
+  creation_date                  | DATE_TIME| DEF(NOW),
+                                              NOT_NULL,
+                                              RO        | 'The date and time when the incident was created.'     ;
+  incident_type_description      | TXT(50)  | NULL      | 'Optional description when incident type=99(Other)'    ;
+  sensitive_affected_information | TXT(50)  | NULL      | 'Description o sensitive affected information '        ;
+  posible_effects                | TXT(250) | NULL      | 'Possibles effects that may be generated'              ;
+##                                                                                                              ##
+  i_in_incidents_01   | IND(in_incident_type_id)    |                                                            ;
+  pk_In_incidents     |  PK(in_incident_id)         | USE_IND(i_in_incidents_01)                                 ;
+  fk_in_incident_type |  FK(in_incident_type_id) -> in_incident_types.(in_incident_type_id)                     |;
+<<-------------------------------------------------------------------------------------------------------------->>
+
+
+<<----- in_office_areas STATIC(name) 'The office areas.' ----->>
+  in_office_area_id  | NUM(1)   |  NOT_NULL  | 'The unique id' ;
+  name               | TXT(50)  |  NOT_NULL  | 'The name'      ;
+##                                                            ##
+  pk_In_office_areas | PK(in_office_area_id)                  |;
+++                                                            ++
+(   1, 'Accounting'                                           );
+(   2, 'CPD'                                                  );
+<<------------------------------------------------------------>>
+
+
+<<--------------------------- in_visits  'The visits.' ------------------------->>
+  in_visit_id          |  NUM(4)    | NOT_NULL       | 'The unique id'           ;
+  entry_moment         |  DATE_TIME | DEF(NOW),
+                                      NOT_NULL       | 'The entry moment'        ;
+  exit_moment          |  DATE_TIME | NOT_NULL       | 'The exit moment'         ;
+  visitor_name         |  TXT(50)   | NOT_NULL       | 'The visitor name'        ;
+  in_company_id        |  NUM(3)    | NOT_NULL       | 'The company id'          ;
+  internal_authorizer  |  TXT(8)    | NOT_NULL       | 'The internal authorizer' ;
+##                                                                              ##
+  i_in_visits_01   | IND(in_company_id)       |                                  ;
+  pk_In_visits     | PK(in_visit_id)          | USE_IND(i_in_visits_01)          ;
+  fk_in_companies  | FK(in_company_id) -> in_companies.(in_company_id)          |;
+<<------------------------------------------------------------------------------>>
+
+
+<<--------------- in_internal_communicated 'The internal users.'  ------------------->>
+  in_incident_id  |  NUM(13) |  NOT_NULL  | 'The unique id'                           ;
+  login           |  TXT(8)  |  NOT_NULL  | 'The login'                               ;
+##                                                                                   ##
+  pk_In_internal_communicated  | PK(in_incident_id,login)                            |;
+  fk_in_internal_communicated  | FK(in_incident_id) -> in_incidents.(in_incident_id) |;
+<<----------------------------------------------------------------------------------->>
+
+
+<<--------------- in_external_affected  'The external users.' ------------------->>
+  in_incident_id  | NUM(13) | NOT_NULL | 'The unique id'                          ;
+  user_id         | NUM(10) | NOT_NULL | 'The user id'                            ;
+##                                                                               ##
+  pk_In_external_affected  | PK(in_incident_id,user_id)                          |;
+  fk_in_external_affected  | FK(in_incident_id) -> in_incidents.(in_incident_id) |;
+<<------------------------------------------------------------------------------->>
+
+
+<<----------------------- in_visited_areas  'The visited areas' ------------------------------->>
+  in_visit_id        | NUM(4) | NOT_NULL | 'The unique id'                                      ;
+  in_office_area_id  | NUM(1) | NOT_NULL | 'The office area id'                                 ;
+##                                                                                             ##
+  i_in_visited_areas_01 | IND(in_office_area_id)                                               |;
+  pk_In_visited_areas   | PK(in_visit_id,in_office_area_id)  | USE_IND(i_in_visited_areas_01)   ;
+  fk_in_office_area     | FK(in_office_area_id) -> in_office_areas.(in_office_area_id)         |;
+  fk_in_visit_areas     | FK(in_visit_id) -> in_visits.(in_visit_id)                           |;
+<<--------------------------------------------------------------------------------------------->>
+
+
+<<------------- in_companies  'The companies.' ----------->>
+  in_company_id  |  NUM(3)  |  NOT_NULL  | 'The unique id' ;
+  name           |  TXT(50) |  NOT_NULL  | 'The name'      ;
+##                                                        ##
+  pk_In_companies | PK(in_company_id)                     |;
+<<-------------------------------------------------------->>
+
+SEQUENCE(seq_in_visits)
+SEQUENCE(seq_in_companies)
+
+{}

@@ -1,0 +1,94 @@
+// **********************************************************************
+//   This file is part of DB Schema Definition Translator.              *
+//                                                                      *
+//   DB Schema Definition Translator is free software: you can          *
+//   redistribute it and/or modify it under the terms of the GNU        *
+//   General Public License as published by the Free Software           *
+//   Foundation, either version 2 of the License, or any later version. *
+//                                                                      *
+//   Foobar is distributed in the hope that it will be useful,          *
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of     *
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      *
+//   GNU General Public License for more details.                       *
+//                                                                      *
+//   You should have received a copy of the GNU General Public License  *
+//   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.    *
+//                                                                      *
+//   Author: Felipe Crespo Gambade                                      *
+//                                                                      *
+//***********************************************************************
+
+group dbs;
+
+dbs_root_rule(dbs) ::= <<
+
+-- 50 - schema create
+
+<dbs.tables:table(t=it, tbspc=dbs.defaultTableTablespace); separator="\n\n">
+>>
+
+
+// ------------------------- Tables -----------------------
+table(t, tbspc) ::=
+<<
+-- <t.name>
+-- <t.description>
+create table <t.name> (
+  <t.columns:column(c=it); separator=",\n">
+)
+  tablespace <tbspc> ;
+>>
+
+
+
+// ------------------------- Columns -----------------------
+column(c) ::=
+<<  <c.name> <dataType(t=c.dataType, c=c)> <c.options:option(o=it); separator=" "> >>
+
+// ------------------- Column types -----------------------
+dataType(t, c) ::=
+<< <if(t.text)><textType(c=c)><endif><if(t.number)><numberType(c=c)><endif><if(t.boolean)><booleanType()><endif><if(t.dateTime)><dateTimeType()><endif><if(t.date)><dateType()><endif><if(t.time)><timeType()><endif>
+>>
+
+textType(c) ::=
+<< VARCHAR2(<c.size>) >>
+
+numberType(c) ::=
+<< NUMBER(<c.precision>,<c.scale>) >>
+
+booleanType() ::=
+<< NUMBER(1) >>
+
+dateTimeType() ::=
+<< DATE >>
+
+dateType() ::=
+<< DATE >>
+
+timeType() ::=
+<< DATE >>
+
+
+//------------------------ Column Options ----------------------------------------
+
+option(o)
+::=
+<< <if(o.notNull)><notNull()><endif><if(o.null)><null()><endif><if(o.defaultValue)><defaultValue(o)><endif> >>
+
+
+notNull()
+::=
+<< not null >>
+
+null() ::=
+<< null >>
+
+defaultValue(d)
+::=
+<< default <if(d.value.dataType.dateTime)><dateDefault(d)><else><d.value.content><endif> >>
+
+// in this version the only defaultValue for date data is NOW
+dateDefault(d)
+::=
+<< SYSDATE >>
+

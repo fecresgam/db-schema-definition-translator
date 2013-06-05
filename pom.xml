@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>db-schema-definition-translator</groupId>
+  <artifactId>db-schema-definition-translator</artifactId>
+  <packaging>jar</packaging>
+  <version>0.7</version>
+  <name>DB Schema Definition Translator</name>
+  <description>Data Base Schema Definition Translator</description>
+  <inceptionYear>2013</inceptionYear>
+  <licenses>
+    <license>
+      <name>GPL</name>
+      <url>http://www.fsf.org/licensing/licenses/gpl.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:svn:http://svn/db-schema-definition-translator/trunk</connection>
+    <developerConnection>scm:svn:http://svn/db-schema-definition-translator/trunk</developerConnection>
+    <url>http://svn/db-schema-definition-translator/trunk</url>
+  </scm>  
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr-3</artifactId>
+      <version>3.0.1</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>stringtemplate</artifactId>
+      <version>3.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>antlr3-maven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+                <execution>
+                    <id>default-execution</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>antlr</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <archive>
+                    <index>true</index>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <mainClass>com.ventura24.dbsd.translator.DbsdConversor</mainClass>
+                        <packageName>com.ventura24.dbsd.translator</packageName>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+
+
+    </plugins>
+  </build>
+
+</project>

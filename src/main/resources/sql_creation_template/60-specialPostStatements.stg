@@ -1,0 +1,68 @@
+// **********************************************************************
+//   This file is part of DB Schema Definition Translator.              *
+//                                                                      *
+//   DB Schema Definition Translator is free software: you can          *
+//   redistribute it and/or modify it under the terms of the GNU        *
+//   General Public License as published by the Free Software           *
+//   Foundation, either version 2 of the License, or any later version. *
+//                                                                      *
+//   Foobar is distributed in the hope that it will be useful,          *
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of     *
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      *
+//   GNU General Public License for more details.                       *
+//                                                                      *
+//   You should have received a copy of the GNU General Public License  *
+//   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.    *
+//                                                                      *
+//   Author: Felipe Crespo Gambade                                      *
+//                                                                      *
+//***********************************************************************
+
+//TODO fcres: Añadir @seq seq_g_taxes
+
+group dbs;
+
+// ------------------------- Root rule -----------------------
+dbs_root_rule(dbs) ::=
+<<
+
+-- 60 - Special statements for oracle:post databases
+
+-- Sequence creation
+<dbs.sequences:sequence(s=it); separator="\n">
+
+<dbs.sqlLiteralCode>
+
+-- Comments on tables and columns
+<dbs.tables:table(t=it); separator="\n">
+>>
+
+// ------------------------- Sequences -----------------------
+sequence(s) ::=
+<<
+create sequence <s.name> nocache;
+>>
+
+// ------------------------- Tables -----------------------
+table(t) ::=
+<<
+
+comment on table <t.name> is '<t.description> <if(t.type.isa)><isa_table_desc(t=t)><endif><if(t.type.static)><static_table_desc(t=t)><endif>';
+<t.columns:column(c=it, t=t); separator="\n">
+>>
+
+isa_table_desc(t) ::=
+<<
+@isa <t.referenceTable>
+>>
+
+static_table_desc(t) ::=
+<<
+@static <t.nameColumn>
+>>
+
+// ------------------------- Columns -----------------------
+column(t,c) ::=
+<<
+comment on column <t.name>.<c.name> is '<c.description><if(c.dataType.boolean)> @bool 1,0 <endif><if(c.readOnly)> @readonly <endif>';
+>>

@@ -1,0 +1,61 @@
+OWNER(T_OWNER)
+USER(T_USER)
+USER_ROLE(ROLE)
+
+DEFAULT_TABLE_TABLESPACE(DATA)
+DEFAULT_INDEX_TABLESPACE(INDX)
+TARGET_DBMS(ORACLE)
+
+
+<<--------- tipos_empleado STATIC(nombre) 'Los tipos de empleados.'  ----------------->>
+  id_tipo_empleado   |   NUM(2)   |   NOT_NULL   | 'Identificador unico de empleado'   ;
+  nombre             |   TXT(50)  |   NOT_NULL   | 'El nombre de tipo de empleado'     ;
+##                                                                                    ##
+  pk_tipo_empleado    |  PK(id_tipo_empleado) |                                        ;
+++                                                                                    ++
+(  1, 'Secretario'                                                                    );
+(  2, 'Programador'                                                                   );
+(  3, 'Directivo'                                                                     );
+<<------------------------------------------------------------------------------------>>
+
+
+<<------------------------------------------- personas  'Las personas'  --------------------------------------------->>
+  id_persona       | NUM(4)   | NOT_NULL | 'Identificador unico de persona'                                           ;
+  nombre_completo  | TXT(100) | NOT_NULL | 'El nombe y los dos apellidos'                                             ;
+  altura_en_metros | NUM(3,2) | NULL     | 'La altura de la persona expresada en metros, debe ser menor de 2,5 metros para que entre en la oficina';
+  edad             | NUM(2)   | NOT_NULL | 'La edad. No se permite dos personas con la misma edad por supersticion'   ;
+##                                                                                                                   ##
+  in_id_persona          | IND(id_persona)                |                                                           ;
+  pk_persona             |  PK(id_persona)                |  USE_IND(in_id_persona)                               ;
+  chk_altura             |  CHK(altura_en_metros '< 2.5') |                                                           ;
+  uk_edad                |  UK(edad)                      |                                                           ;
+<<------------------------------------------------------------------------------------------------------------------->>
+
+
+<<---------------------------- empleados ISA(personas) 'Los empleados.'  --------------------------------->>
+  id_persona           | NUM(4)    | NOT_NULL | 'Identificador unico de persona'                          ;
+  id_tipo_empleado     | NUM(1)    | NOT_NULL | 'Identificador unico de tipo de empleado'                 ;
+  es_jefe              | BOOL      | NOT_NULL | 'Define si tiene alguien a su cargo'                      ;
+  fecha_inicio_ss      | DATE      | NOT_NULL | 'La fecha en la que se le dio de alta en la SS'           ;
+  fecha_fin_ss         | DATE      | NULL     | 'La fecha en la que se le dio de baja en la SS'           ;
+  hora_entrada         | TIME      | NOT_NULL | 'La hora en la que inicia la jornada laboral'             ;
+  hora_salida          | TIME      | NOT_NULL | 'La hora en la que finaliza la jornada laboral'           ;
+  ultima_modificacion  | DATE_TIME | NOT_NULL,
+                                     RO,
+                                     DEF(NOW) | 'Fecha y hora de la ultima modificacion de este registro' ;
+##                                                                                                       ##
+  pk_empleado         |  PK(id_persona)                                              |                    ;
+  fk_empleado_persona |  FK(id_persona)        -> personas.(id_persona)              |                    ;
+  fk_tipo_empleado    |  FK(id_tipo_empleado) -> tipos_empleado.(id_tipo_empleado)  |                    ;
+<<------------------------------------------------------------------------------------------------------->>
+
+SEQUENCE(seq_id_persona)
+SEQUENCE(seq_id_empleado)
+
+
+{
+CREATE OR REPLACE TRIGGER tr_empleados_fecha_modificacion before
+  UPDATE ON empleados FOR EACH row BEGIN :new.fecha_modificacion:=SYSDATE;
+END tr_empleados_fecha_modificacion;
+}
+
