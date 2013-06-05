@@ -29,44 +29,44 @@ options
 
 
 @lexer::header {
-package com.ventura24.dbsd.translator;
+package com.ryoppei.dbsd.translator;
 }
 
 @parser::header {
-package com.ventura24.dbsd.translator;
+package com.ryoppei.dbsd.translator;
 
-import com.ventura24.dbsd.translator.dto.columns.Column;
-import com.ventura24.dbsd.translator.dto.columns.ColumnOption;
-import com.ventura24.dbsd.translator.dto.columns.CommonColumnOption;
-import com.ventura24.dbsd.translator.dto.columns.DefaultValueColumnOption;
-import com.ventura24.dbsd.translator.dto.columns.CommonColumn;
-import com.ventura24.dbsd.translator.dto.columns.NumberColumn;
-import com.ventura24.dbsd.translator.dto.columns.TextColumn;
+import com.ryoppei.dbsd.translator.dto.columns.Column;
+import com.ryoppei.dbsd.translator.dto.columns.ColumnOption;
+import com.ryoppei.dbsd.translator.dto.columns.CommonColumnOption;
+import com.ryoppei.dbsd.translator.dto.columns.DefaultValueColumnOption;
+import com.ryoppei.dbsd.translator.dto.columns.CommonColumn;
+import com.ryoppei.dbsd.translator.dto.columns.NumberColumn;
+import com.ryoppei.dbsd.translator.dto.columns.TextColumn;
 
-import com.ventura24.dbsd.translator.dto.data.Data;
-import com.ventura24.dbsd.translator.dto.data.DataType;
-import com.ventura24.dbsd.translator.dto.data.NumberData;
-import com.ventura24.dbsd.translator.dto.data.TextData;
-import com.ventura24.dbsd.translator.dto.data.DateTimeData;
+import com.ryoppei.dbsd.translator.dto.data.Data;
+import com.ryoppei.dbsd.translator.dto.data.DataType;
+import com.ryoppei.dbsd.translator.dto.data.NumberData;
+import com.ryoppei.dbsd.translator.dto.data.TextData;
+import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
 
-import com.ventura24.dbsd.translator.dto.constraints.CommonConstraint;
-import com.ventura24.dbsd.translator.dto.constraints.Constraint;
-import com.ventura24.dbsd.translator.dto.constraints.CheckConstraint;
-import com.ventura24.dbsd.translator.dto.constraints.ForeignKeyConstraint;
-import com.ventura24.dbsd.translator.dto.constraints.IndexConstraint;
-import com.ventura24.dbsd.translator.dto.constraints.PrimaryKeyConstraint;
-import com.ventura24.dbsd.translator.dto.constraints.UniqueKeyConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.CommonConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
+import com.ryoppei.dbsd.translator.dto.constraints.CheckConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.ForeignKeyConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.IndexConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.PrimaryKeyConstraint;
+import com.ryoppei.dbsd.translator.dto.constraints.UniqueKeyConstraint;
 
-import com.ventura24.dbsd.translator.dto.CommonDataBaseSchema;
-import com.ventura24.dbsd.translator.dto.CommonTable;
-import com.ventura24.dbsd.translator.dto.DBMSType;
-import com.ventura24.dbsd.translator.dto.Sequence;
-import com.ventura24.dbsd.translator.dto.Table;
-import com.ventura24.dbsd.translator.dto.IsaTable;
-import com.ventura24.dbsd.translator.dto.StaticTable;
-import com.ventura24.dbsd.translator.dto.TableType;
+import com.ryoppei.dbsd.translator.dto.CommonDataBaseSchema;
+import com.ryoppei.dbsd.translator.dto.CommonTable;
+import com.ryoppei.dbsd.translator.dto.DBMSType;
+import com.ryoppei.dbsd.translator.dto.Sequence;
+import com.ryoppei.dbsd.translator.dto.Table;
+import com.ryoppei.dbsd.translator.dto.IsaTable;
+import com.ryoppei.dbsd.translator.dto.StaticTable;
+import com.ryoppei.dbsd.translator.dto.TableType;
 
-import com.ventura24.dbsd.translator.utils.ParserUtils;
+import com.ryoppei.dbsd.translator.utils.ParserUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,9 +17,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:http://svn/db-schema-definition-translator/trunk</connection>
-    <developerConnection>scm:svn:http://svn/db-schema-definition-translator/trunk</developerConnection>
-    <url>http://svn/db-schema-definition-translator/trunk</url>
+    <connection>scm:git:git://github.com/db-schema-definition-translator</connection>
+    <developerConnection>scm:git:git://github.com/db-schema-definition-translator</developerConnection>
+    <url>https://github.com/ryoppei/db-schema-definition-translator</url>
   </scm>  
   
   <dependencies>
@@ -71,8 +71,8 @@
                     <index>true</index>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>com.ventura24.dbsd.translator.DbsdConversor</mainClass>
-                        <packageName>com.ventura24.dbsd.translator</packageName>
+                        <mainClass>com.ryoppei.dbsd.translator.DbsdConversor</mainClass>
+                        <packageName>com.ryoppei.dbsd.translator</packageName>
                         <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                     </manifest>
                 </archive>
