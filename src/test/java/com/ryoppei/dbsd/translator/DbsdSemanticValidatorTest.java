@@ -83,6 +83,7 @@ public class DbsdSemanticValidatorTest
                 DbsdTestUtils.TABLE2_NAME,
                 DbsdTestUtils.TABLE3_DESC,
                 Collections.EMPTY_LIST,
+                Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
@@ -124,7 +125,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE2_DESC,
                 Collections.EMPTY_LIST,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table));
@@ -146,7 +148,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE2_DESC,
                 Collections.EMPTY_LIST,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table));
@@ -170,7 +173,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE1_DESC,
                 Collections.EMPTY_LIST,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table));
@@ -198,7 +202,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE1_DESC,
                 columns,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table));
@@ -222,7 +227,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE2_DESC,
                 Collections.EMPTY_LIST,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table));
@@ -250,7 +256,8 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE3_DESC,
                 Collections.EMPTY_LIST,
-                constraints3);
+                constraints3,
+                Collections.EMPTY_LIST);
 
         // Fake table 1
         List<Column> columns1 = new ArrayList<Column>();
@@ -263,6 +270,7 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE1_DESC,
                 columns1,
+                Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
@@ -288,12 +296,14 @@ public class DbsdSemanticValidatorTest
         List<Constraint> constraints3 = new ArrayList<Constraint>();
         constraints3.add(cons33);
 
+        @SuppressWarnings("unchecked")
         Table table3 = new CommonTable(
                 DbsdTestUtils.TABLE3_NAME,
                 TableType.COMMON,
                 DbsdTestUtils.TABLE3_DESC,
                 columns3,
-                constraints3);
+                constraints3,
+                Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =
                 new DbsdSemanticValidator(createMinimumDbs(table3));
@@ -318,12 +328,14 @@ public class DbsdSemanticValidatorTest
         List<Constraint> constraints3 = new ArrayList<Constraint>();
         constraints3.add(cons33);
 
+        @SuppressWarnings("unchecked")
         Table table3 = new CommonTable(
                 DbsdTestUtils.TABLE3_NAME,
                 TableType.COMMON,
                 DbsdTestUtils.TABLE3_DESC,
                 columns3,
-                constraints3);
+                constraints3,
+                Collections.EMPTY_LIST);
 
         // Fake table 1
         @SuppressWarnings("unchecked")
@@ -331,6 +343,7 @@ public class DbsdSemanticValidatorTest
                 DbsdTestUtils.TABLE1_NAME,
                 TableType.COMMON,
                 DbsdTestUtils.TABLE1_DESC,
+                Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST);
 
@@ -360,12 +373,14 @@ public class DbsdSemanticValidatorTest
         List<Constraint> constraints3 = new ArrayList<Constraint>();
         constraints3.add(cons33);
 
+        @SuppressWarnings("unchecked")
         Table table3 = new CommonTable(
                 DbsdTestUtils.TABLE3_NAME,
                 TableType.COMMON,
                 DbsdTestUtils.TABLE3_DESC,
                 columns3,
-                constraints3);
+                constraints3,
+                Collections.EMPTY_LIST);
 
         // Fake table 1
         List<Column> columns1 = new ArrayList<Column>();
@@ -378,6 +393,7 @@ public class DbsdSemanticValidatorTest
                 TableType.COMMON,
                 DbsdTestUtils.TABLE1_DESC,
                 columns1,
+                Collections.EMPTY_LIST,
                 Collections.EMPTY_LIST);
 
         final DbsdSemanticValidator semanticValidator =

@@ -23,6 +23,7 @@ package com.ryoppei.dbsd.translator.dto;
 
 import com.ryoppei.dbsd.translator.dto.columns.Column;
 import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
+import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.utils.CollectionUtils;
 
 import java.util.List;
@@ -33,6 +34,7 @@ import java.util.Map;
  */
 public class CommonTable implements Table
 {
+    protected List<List<Data>> dataRows;
     private String name;
     private TableType type;
     private String description;
@@ -51,13 +53,15 @@ public class CommonTable implements Table
      * @param description such information.
      * @param columns such information.
      * @param constraints such information.
+     * @param dataRows such information.
      */
     public CommonTable(
             final String name,
             final TableType type,
             final String description,
             final List<Column> columns,
-            final List<Constraint> constraints)
+            final List<Constraint> constraints,
+            final List<List<Data>> dataRows)
     {
         final CollectionUtils collectionUtils =
                 CollectionUtils.getInstance();
@@ -71,6 +75,7 @@ public class CommonTable implements Table
         // put intos maps
         this.columns = collectionUtils.putIntoMap(columns);
         this.constraints = collectionUtils.putIntoMap(constraints);
+        this.dataRows = dataRows;
     }
 
     @Override
@@ -159,5 +164,11 @@ public class CommonTable implements Table
     public String getMapKey()
     {
         return getName();
+    }
+
+    @Override
+    public List<List<Data>> getDataRows()
+    {
+        return dataRows;
     }
 }

@@ -45,6 +45,14 @@ public class DateData extends AbstractData
     @Override
     public DataType getDataType()
     {
-        return DataType.DATE_AND_TIME;
+        return DataType.DATE;
     }
+
+    @SuppressWarnings("unused")
+    public boolean isNow()
+    {
+        return NOW.equals(this);
+    }
+
 }
+

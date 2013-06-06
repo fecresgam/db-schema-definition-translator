@@ -18,8 +18,6 @@
 //                                                                      *
 //***********************************************************************
 
-//TODO fcres: Añadir tipos de datos Boolean date, time, timedate
-
 group dbs;
 
 dbs_root_rule(dbs) ::=
@@ -33,7 +31,7 @@ dbs_root_rule(dbs) ::=
 
 inserts(t) ::=
 <<
-<if(t.type.static)>
+<if(t.dataRows)>
 -- inserts for <t.name>
 <t.dataRows:insert(t=t, dr=it); separator="\n">
 <endif>
@@ -46,7 +44,7 @@ insert into <t.name> values (<dr:data(d=it); separator=", ">);
 
 // ------------------ Data depending on type --------------------------
 data(d) ::=
-<< <if(d.dataType.text)><text_data(d=d)><endif><if(d.dataType.number)><number_data(d=d)><endif><if(d.dataType.boolean)><boolean_data(d=d)><endif> >>
+<< <if(d.dataType.text)><text_data(d=d)><endif><if(d.dataType.number)><number_data(d=d)><endif><if(d.dataType.boolean)><boolean_data(d=d)><endif><if(d.dataType.date)><date_data(d=d)><endif> >>
 
 text_data(d) ::=
 <<'<d.content>'>>
@@ -56,3 +54,6 @@ number_data(d) ::=
 
 boolean_data(d) ::=
 << <if(d.true)>1<else>0<endif> >>
+
+date_data(d) ::=
+<< <if(d.now)>SYSDATE<endif> >>

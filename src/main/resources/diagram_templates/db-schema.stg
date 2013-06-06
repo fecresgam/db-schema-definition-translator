@@ -73,26 +73,22 @@ columnType(c) ::=
 
 // ------------------- Column types -----------------------
 dataType(t, c) ::=
-<< <if(t.text)><textType(c=c)><endif><if(t.number)><numberType(c=c)><endif><if(t.boolean)><booleanType()><endif><if(t.dateTime)><dateTimeType()><endif><if(t.date)><dateType()><endif><if(t.time)><timeType()><endif>
+<< <if(t.text)><textType(c=c)><endif><if(t.number)><numberType(c=c)><endif><if(t.boolean)><booleanType()><endif><if(t.date)><dateType()><endif>
 >>
 
 textType(c) ::=
 << TXT(<c.size>) >>
 
 numberType(c) ::=
-<< NUM(<c.precision>,<c.scale>) >>
+<< NUMBER<if(c.precision)>(<c.precision><if(c.scale)>,<c.scale><endif>)<endif> >>
+
 
 booleanType() ::=
 << BOOL >>
 
-dateTimeType() ::=
-<< DATE_TIME >>
-
 dateType() ::=
 << DATE >>
 
-timeType() ::=
-<< TIME >>
 
 
 

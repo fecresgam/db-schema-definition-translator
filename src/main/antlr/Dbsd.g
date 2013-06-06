@@ -47,7 +47,7 @@ import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
 import com.ryoppei.dbsd.translator.dto.data.NumberData;
 import com.ryoppei.dbsd.translator.dto.data.TextData;
-import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
+import com.ryoppei.dbsd.translator.dto.data.DateData;
 import com.ryoppei.dbsd.translator.dto.data.BooleanData;
 
 import com.ryoppei.dbsd.translator.dto.constraints.CommonConstraint;
@@ -224,9 +224,9 @@ fragment tables returns [List<Table> result]
 
 fragment table  returns [Table result]
 @init { result = null; }
-	:	TABLE_HEADER_START n=ID d=string TABLE_HEADER_END col=columns con=constraints TABLE_FOOTER  { result = new CommonTable($n.text, TableType.COMMON, d, col, con);}
-	|	TABLE_HEADER_START n=ID ISA OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_FOOTER  { result = new IsaTable($n.text, $r.text, d, col, con);}
-	|	TABLE_HEADER_START n=ID STATIC OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list  TABLE_FOOTER  { result = new StaticTable($n.text, $r.text, d, col, con, tds);}
+	:	TABLE_HEADER_START n=ID                   d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new CommonTable($n.text, TableType.COMMON, d, col, con, tds);}
+	|	TABLE_HEADER_START n=ID ISA    OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new IsaTable($n.text, $r.text, d, col, con, tds);}
+	|	TABLE_HEADER_START n=ID STATIC OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new StaticTable($n.text, $r.text, d, col, con, tds);}
 	;
 
 
@@ -238,12 +238,11 @@ fragment columns returns [List<Column> result]
 
 fragment column returns [Column result]
   : i=ID I TXT  OP n=INT CP           I co=column_options? I d=string SC  {result = new TextColumn  ($i.text, Integer.valueOf($n.text), co, d);}
-  | i=ID I NUM  OP n=INT CP           I co=column_options? I d=string SC  {result = new NumberColumn($i.text, Integer.valueOf($n.text),  0, co, d);}
+  | i=ID I NUM                        I co=column_options? I d=string SC  {result = new NumberColumn($i.text, null,  null, co, d);}
+  | i=ID I NUM  OP n=INT CP           I co=column_options? I d=string SC  {result = new NumberColumn($i.text, Integer.valueOf($n.text),  null, co, d);}
   | i=ID I NUM  OP n=INT CM n2=INT CP I co=column_options? I d=string SC  {result = new NumberColumn($i.text, Integer.valueOf($n.text), Integer.valueOf($n2.text), co, d);}
   | i=ID I BOOL                       I co=column_options? I d=string SC  {result = new CommonColumn($i.text, DataType.BOOLEAN , co, d);}
   | i=ID I DATE                       I co=column_options? I d=string SC  {result = new CommonColumn($i.text, DataType.DATE    , co, d);}
-  | i=ID I TIME                       I co=column_options? I d=string SC  {result = new CommonColumn($i.text, DataType.TIME    , co, d);}
-  | i=ID I DATE_TIME                  I co=column_options? I d=string SC  {result = new CommonColumn($i.text, DataType.DATE_AND_TIME , co, d);}
   ;
 
 fragment column_options returns [List<ColumnOption> result]
@@ -297,7 +296,7 @@ fragment t_data_row returns [Data result]
   : t=DECIMAL {result = new NumberData($t.text);}
   | t=INT     {result = new NumberData($t.text);}
   | s=string  {result = new TextData(s);}
-  | NOW       {result = DateTimeData.NOW;}
+  | NOW       {result = DateData.NOW;}
   | TRUE      {result = BooleanData.TRUE;}
   | FALSE     {result = BooleanData.FALSE;}
 

@@ -23,6 +23,7 @@ package com.ryoppei.dbsd.translator.dto;
 
 import com.ryoppei.dbsd.translator.dto.columns.Column;
 import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
+import com.ryoppei.dbsd.translator.dto.data.Data;
 
 import java.util.List;
 
@@ -43,20 +44,23 @@ public class IsaTable extends CommonTable
      * @param description such information.
      * @param columns such information.
      * @param constraints such information.
+     * @param dataRows such information.
      */
     public IsaTable(
             final String name,
             final String referenceTable,
             final String description,
             final List<Column> columns,
-            final List<Constraint> constraints)
+            final List<Constraint> constraints,
+            final List<List<Data>> dataRows)
     {
         super(
                 name,
                 TableType.ISA,
                 description,
                 columns,
-                constraints
+                constraints,
+                dataRows
         );
         this.referenceTable = referenceTable;
 

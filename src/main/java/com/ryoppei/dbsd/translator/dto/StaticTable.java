@@ -35,7 +35,6 @@ public class StaticTable extends CommonTable
 
 
     private final String nameColumn;
-    private List<List<Data>> dataRows;
 
 
     /**
@@ -61,10 +60,9 @@ public class StaticTable extends CommonTable
                 TableType.STATIC,
                 description,
                 columns,
-                constraints
-        );
+                constraints,
+                dataRows);
         this.nameColumn = nameColumn;
-        this.dataRows = dataRows;
 
     }
 
@@ -78,13 +76,4 @@ public class StaticTable extends CommonTable
         return nameColumn;
     }
 
-    /**
-     * Retrieves the data rows.
-     *
-     * @return such information.
-     */
-    public List<List<Data>> getDataRows()
-    {
-        return dataRows;
-    }
 }

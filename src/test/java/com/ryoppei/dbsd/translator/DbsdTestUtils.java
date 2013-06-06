@@ -45,11 +45,12 @@ import com.ryoppei.dbsd.translator.dto.constraints.UniqueKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.data.BooleanData;
 import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
-import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
+import com.ryoppei.dbsd.translator.dto.data.DateData;
 import com.ryoppei.dbsd.translator.dto.data.NumberData;
 import com.ryoppei.dbsd.translator.dto.data.TextData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DbsdTestUtils
@@ -211,6 +212,7 @@ public class DbsdTestUtils
                 dataRows);
     }
 
+    @SuppressWarnings("unchecked")
     private Table getTable2()
     {
         List<Column> columns = new ArrayList<Column>();
@@ -248,16 +250,18 @@ public class DbsdTestUtils
                 TableType.COMMON,
                 TABLE2_DESC,
                 columns,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
     }
 
+    @SuppressWarnings("unchecked")
     public Table getTable3()
     {
 
         final ArrayList<ColumnOption> column38Options = new ArrayList<ColumnOption>();
         column38Options.add(CommonColumnOption.NOT_NULL);
         column38Options.add(CommonColumnOption.READ_ONLY);
-        column38Options.add(new DefaultValueColumnOption(DateTimeData.NOW));
+        column38Options.add(new DefaultValueColumnOption(DateData.NOW));
 
         List<Column> columns = new ArrayList<Column>();
         final NumberColumn col31 = new NumberColumn(COL31_NAME, 4, 0, getNotNullOptionAsList(), COL31_DESC);
@@ -302,7 +306,8 @@ public class DbsdTestUtils
                 TABLE2_NAME,
                 TABLE3_DESC,
                 columns,
-                constraints);
+                constraints,
+                Collections.EMPTY_LIST);
     }
 
     private List<ColumnOption> getNullOptionAsList()

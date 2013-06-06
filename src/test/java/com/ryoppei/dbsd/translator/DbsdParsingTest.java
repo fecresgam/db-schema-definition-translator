@@ -41,7 +41,7 @@ import com.ryoppei.dbsd.translator.dto.constraints.PrimaryKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.UniqueKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.data.BooleanData;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
-import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
+import com.ryoppei.dbsd.translator.dto.data.DateData;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -282,7 +282,7 @@ public class DbsdParsingTest
         assertEquals(ColumnOptionType.READ_ONLY, column37.getOptions().get(1).getType());
         assertEquals(ColumnOptionType.DEFAULT_VALUE, column37.getOptions().get(2).getType());
         final DefaultValueColumnOption columnOption113b = (DefaultValueColumnOption) column37.getOptions().get(2);
-        assertEquals(DateTimeData.NOW, columnOption113b.getValue());
+        assertEquals(DateData.NOW, columnOption113b.getValue());
 
         // --- Constraints ---
         assertEquals(3, table3.getConstraints().size());

@@ -22,6 +22,7 @@ package com.ryoppei.dbsd.translator.dto;
 
 import com.ryoppei.dbsd.translator.dto.columns.Column;
 import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
+import com.ryoppei.dbsd.translator.dto.data.Data;
 
 import java.util.List;
 
@@ -95,5 +96,13 @@ public interface Table extends Mappable
      * @return true if it contains that constraint.
      */
     boolean containsConstraint(final String constraintName);
+
+    /**
+     * Retrieves the data rows.
+     *
+     * @return such information.
+     */
+    public List<List<Data>> getDataRows();
+
 
 }
