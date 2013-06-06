@@ -48,6 +48,7 @@ import com.ryoppei.dbsd.translator.dto.data.DataType;
 import com.ryoppei.dbsd.translator.dto.data.NumberData;
 import com.ryoppei.dbsd.translator.dto.data.TextData;
 import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
+import com.ryoppei.dbsd.translator.dto.data.BooleanData;
 
 import com.ryoppei.dbsd.translator.dto.constraints.CommonConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
@@ -155,7 +156,9 @@ RO       : 'RO';
 DEF      : 'DEF';
 USE_IND  : 'USE_IND';
 
-NOW : 'NOW';
+NOW   : 'NOW';
+TRUE  : 'TRUE';
+FALSE : 'FALSE';
 
 ISA : 'ISA';
 STATIC : 'STATIC';
@@ -295,6 +298,9 @@ fragment t_data_row returns [Data result]
   | t=INT     {result = new NumberData($t.text);}
   | s=string  {result = new TextData(s);}
   | NOW       {result = DateTimeData.NOW;}
+  | TRUE      {result = BooleanData.TRUE;}
+  | FALSE     {result = BooleanData.FALSE;}
+
   ;
 
 // ------------------------------End Tables ------------------------------------

@@ -27,6 +27,7 @@ import com.ryoppei.dbsd.translator.dto.StaticTable;
 import com.ryoppei.dbsd.translator.dto.Table;
 import com.ryoppei.dbsd.translator.dto.TableType;
 import com.ryoppei.dbsd.translator.dto.columns.Column;
+import com.ryoppei.dbsd.translator.dto.columns.ColumnOption;
 import com.ryoppei.dbsd.translator.dto.columns.ColumnOptionType;
 import com.ryoppei.dbsd.translator.dto.columns.DefaultValueColumnOption;
 import com.ryoppei.dbsd.translator.dto.columns.NumberColumn;
@@ -38,6 +39,7 @@ import com.ryoppei.dbsd.translator.dto.constraints.ForeignKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.IndexConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.PrimaryKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.UniqueKeyConstraint;
+import com.ryoppei.dbsd.translator.dto.data.BooleanData;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
 import com.ryoppei.dbsd.translator.dto.data.DateTimeData;
 import org.junit.Test;
@@ -92,7 +94,7 @@ public class DbsdParsingTest
         final StaticTable table1b = (StaticTable) table1;
         assertEquals(DbsdTestUtils.COL12_NAME, table1b.getNameColumn());
         // Col 11
-        assertEquals(2, table1.getColumns().size());
+        assertEquals(3, table1.getColumns().size());
         final Column column11 = table1.getColumn(DbsdTestUtils.COL11_NAME);
         assertEquals(column11.getName(), DbsdTestUtils.COL11_NAME);
         assertEquals(DataType.NUMBER, column11.getDataType());
@@ -111,8 +113,21 @@ public class DbsdParsingTest
         assertEquals(ColumnOptionType.NOT_NULL, column12.getOptions().get(0).getType());
         final TextColumn column12b = (TextColumn) column12;
         assertEquals(50, column12b.getSize().intValue());
+
+        // Col 13
+        final Column column13 = table1.getColumn(DbsdTestUtils.COL13_NAME);
+        assertEquals(DbsdTestUtils.COL13_NAME, column13.getName());
+        assertEquals(DbsdTestUtils.COL13_DESC, column13.getDescription());
+        assertEquals(DataType.BOOLEAN, column13.getDataType());
+        assertEquals(2, column13.getOptions().size());
+        assertEquals(ColumnOptionType.NOT_NULL, column13.getOptions().get(0).getType());
+        final ColumnOption columnOption13 = column13.getOptions().get(1);
+        assertEquals(ColumnOptionType.DEFAULT_VALUE, columnOption13.getType());
+        final DefaultValueColumnOption columnOption13b = (DefaultValueColumnOption) columnOption13;
+        assertEquals(BooleanData.FALSE, columnOption13b.getValue());
+
         // Constrains
-        assertEquals(1,table1.getConstraints().size());
+        assertEquals(1, table1.getConstraints().size());
         final Constraint constraint11 = table1.getConstraint(DbsdTestUtils.CONS11_NAME);
         assertEquals(DbsdTestUtils.CONS11_NAME, constraint11.getName());
         assertEquals(ConstraintType.PRIMARY_KEY, constraint11.getType());
@@ -208,7 +223,7 @@ public class DbsdParsingTest
         final IsaTable table3b = (IsaTable) table3;
         assertEquals(DbsdTestUtils.TABLE2_NAME,table3b.getReferenceTable());
         // -- Columns --
-        assertEquals(8, table3.getColumns().size());
+        assertEquals(7, table3.getColumns().size());
         // Col 31
         final Column column31 = table3.getColumn(DbsdTestUtils.COL31_NAME);
         assertEquals(DbsdTestUtils.COL31_NAME, column31.getName());
@@ -233,7 +248,7 @@ public class DbsdParsingTest
         final Column column33 = table3.getColumn(DbsdTestUtils.COL33_NAME);
         assertEquals(DbsdTestUtils.COL33_NAME, column33.getName());
         assertEquals(DbsdTestUtils.COL33_DESC, column33.getDescription());
-        assertEquals(DataType.BOOLEAN, column33.getDataType());
+        assertEquals(DataType.DATE, column33.getDataType());
         assertEquals(1, column33.getOptions().size());
         assertEquals(ColumnOptionType.NOT_NULL, column33.getOptions().get(0).getType());
         // Col 34
@@ -242,14 +257,14 @@ public class DbsdParsingTest
         assertEquals(DbsdTestUtils.COL34_DESC, column34.getDescription());
         assertEquals(DataType.DATE, column34.getDataType());
         assertEquals(1, column34.getOptions().size());
-        assertEquals(ColumnOptionType.NOT_NULL, column34.getOptions().get(0).getType());
+        assertEquals(ColumnOptionType.NULL, column34.getOptions().get(0).getType());
         // Col 35
         final Column column35 = table3.getColumn(DbsdTestUtils.COL35_NAME);
         assertEquals(DbsdTestUtils.COL35_NAME, column35.getName());
         assertEquals(DbsdTestUtils.COL35_DESC, column35.getDescription());
-        assertEquals(DataType.DATE, column35.getDataType());
+        assertEquals(DataType.TIME, column35.getDataType());
         assertEquals(1, column35.getOptions().size());
-        assertEquals(ColumnOptionType.NULL, column35.getOptions().get(0).getType());
+        assertEquals(ColumnOptionType.NOT_NULL, column35.getOptions().get(0).getType());
         // Col 36
         final Column column36 = table3.getColumn(DbsdTestUtils.COL36_NAME);
         assertEquals(DbsdTestUtils.COL36_NAME, column36.getName());
@@ -261,19 +276,12 @@ public class DbsdParsingTest
         final Column column37 = table3.getColumn(DbsdTestUtils.COL37_NAME);
         assertEquals(DbsdTestUtils.COL37_NAME, column37.getName());
         assertEquals(DbsdTestUtils.COL37_DESC, column37.getDescription());
-        assertEquals(DataType.TIME, column37.getDataType());
-        assertEquals(1, column37.getOptions().size());
+        assertEquals(DataType.DATE_AND_TIME, column37.getDataType());
+        assertEquals(3, column37.getOptions().size());
         assertEquals(ColumnOptionType.NOT_NULL, column37.getOptions().get(0).getType());
-        // Col 38
-        final Column column38 = table3.getColumn(DbsdTestUtils.COL38_NAME);
-        assertEquals(DbsdTestUtils.COL38_NAME, column38.getName());
-        assertEquals(DbsdTestUtils.COL38_DESC, column38.getDescription());
-        assertEquals(DataType.DATE_AND_TIME, column38.getDataType());
-        assertEquals(3, column38.getOptions().size());
-        assertEquals(ColumnOptionType.NOT_NULL, column38.getOptions().get(0).getType());
-        assertEquals(ColumnOptionType.READ_ONLY, column38.getOptions().get(1).getType());
-        assertEquals(ColumnOptionType.DEFAULT_VALUE, column38.getOptions().get(2).getType());
-        final DefaultValueColumnOption columnOption113b = (DefaultValueColumnOption) column38.getOptions().get(2);
+        assertEquals(ColumnOptionType.READ_ONLY, column37.getOptions().get(1).getType());
+        assertEquals(ColumnOptionType.DEFAULT_VALUE, column37.getOptions().get(2).getType());
+        final DefaultValueColumnOption columnOption113b = (DefaultValueColumnOption) column37.getOptions().get(2);
         assertEquals(DateTimeData.NOW, columnOption113b.getValue());
 
         // --- Constraints ---
