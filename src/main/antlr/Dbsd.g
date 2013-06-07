@@ -86,7 +86,7 @@ import java.util.List;
 COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-    ;
+     ;
 
 LITERAL_CODE
     :  '{' ( ESC_SEQ | ~('\\'|'}') )* '}'
