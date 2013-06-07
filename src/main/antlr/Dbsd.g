@@ -83,6 +83,11 @@ import java.util.List;
 
 // ***************** lexer rules:
 
+COMMENT
+    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+    |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+    ;
+
 LITERAL_CODE
     :  '{' ( ESC_SEQ | ~('\\'|'}') )* '}'
     ;
