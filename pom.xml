@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>db-schema-definition-translator</groupId>
+  <groupId>db-schema-definition</groupId>
   <artifactId>db-schema-definition-translator</artifactId>
-  <packaging>jar</packaging>
-  <version>0.7</version>
+  <packaging>pom</packaging>
+  <version>0.7-SNAPSHOT</version>
   <name>DB Schema Definition Translator</name>
   <description>Data Base Schema Definition Translator</description>
   <inceptionYear>2013</inceptionYear>
@@ -17,11 +17,11 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/db-schema-definition-translator</connection>
-    <developerConnection>scm:git:git://github.com/db-schema-definition-translator</developerConnection>
-    <url>https://github.com/ryoppei/db-schema-definition-translator</url>
-  </scm>  
-  
+    <connection>https://github.com/ryoppei/db-schema-definition-translator.git</connection>
+    <developerConnection>https://github.com/ryoppei/db-schema-definition-translator.git</developerConnection>
+    <url>https://github.com/ryoppei/db-schema-definition-translator.git</url>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -79,7 +79,11 @@
             </configuration>
         </plugin>
 
-
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.4.1</version>
+        </plugin>
     </plugins>
   </build>
 
