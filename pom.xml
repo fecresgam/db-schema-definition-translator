@@ -17,9 +17,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:https://github.com/ryoppei/db-schema-definition-translator.git</connection>
-    <developerConnection>scm:https://github.com/ryoppei/db-schema-definition-translator.git</developerConnection>
-    <url>scm:https://github.com/ryoppei/db-schema-definition-translator.git</url>
+    <connection>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</connection>
+    <developerConnection>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</developerConnection>
+    <url>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</url>
   </scm>
 
   <dependencies>
