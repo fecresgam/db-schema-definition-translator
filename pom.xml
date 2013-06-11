@@ -4,7 +4,7 @@
   <groupId>db-schema-definition</groupId>
   <artifactId>db-schema-definition-translator</artifactId>
   <packaging>pom</packaging>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   <name>DB Schema Definition Translator</name>
   <description>Data Base Schema Definition Translator</description>
   <inceptionYear>2013</inceptionYear>
@@ -20,6 +20,7 @@
     <connection>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</connection>
     <developerConnection>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</developerConnection>
     <url>scm:git:git@github.com:ryoppei/db-schema-definition-translator.git</url>
+    <tag>db-schema-definition-translator-0.7</tag>
   </scm>
 
   <dependencies>
