@@ -39,9 +39,9 @@ TARGET_DBMS(ORACLE)
   id_tipo_empleado     | NUM(1)    | NOT_NULL | 'Identificador unico de tipo de empleado'                 ;
   fecha_inicio_ss      | DATE      | NOT_NULL | 'La fecha en la que se le dio de alta en la SS'           ;
   fecha_fin_ss         | DATE      | NULL     | 'La fecha en la que se le dio de baja en la SS'           ;
-  hora_entrada         | TIME      | NOT_NULL | 'La hora en la que inicia la jornada laboral'             ;
-  hora_salida          | TIME      | NOT_NULL | 'La hora en la que finaliza la jornada laboral'           ;
-  ultima_modificacion  | DATE_TIME | NOT_NULL,
+  hora_entrada         | DATE      | NOT_NULL | 'La hora en la que inicia la jornada laboral'             ;
+  hora_salida          | DATE      | NOT_NULL | 'La hora en la que finaliza la jornada laboral'           ;
+  ultima_modificacion  | DATE      | NOT_NULL,
                                      RO,
                                      DEF(NOW) | 'Fecha y hora de la ultima modificacion de este registro' ;
 ##                                                                                                       ##

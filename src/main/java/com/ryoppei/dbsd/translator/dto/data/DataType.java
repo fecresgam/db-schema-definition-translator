@@ -25,7 +25,7 @@ package com.ryoppei.dbsd.translator.dto.data;
  */
 public enum DataType
 {
-    TEXT, NUMBER, DATE, TIME, DATE_AND_TIME, BOOLEAN;
+    TEXT, NUMBER, DATE, BOOLEAN;
 
     /**
      * Check if the column type is TEXT.
@@ -57,25 +57,6 @@ public enum DataType
         return this == DATE;
     }
 
-    /**
-     * Check if the column type is TIME.
-     *
-     * @return such information.
-     */
-    public boolean isTime()
-    {
-        return this == TIME;
-    }
-
-    /**
-     * Check if the column type is DATE_AND_TIME.
-     *
-     * @return such information.
-     */
-    public boolean isDateTime()
-    {
-        return this == DATE_AND_TIME;
-    }
 
     /**
      * Check if the column type is BOOLEAN.

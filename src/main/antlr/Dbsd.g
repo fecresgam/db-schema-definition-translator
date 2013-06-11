@@ -152,8 +152,6 @@ TXT       : 'TXT';
 NUM       : 'NUM';
 BOOL      : 'BOOL';
 DATE      : 'DATE';
-TIME      : 'TIME';
-DATE_TIME : 'DATE_TIME';
 
 NOT_NULL : 'NOT_NULL';
 NULL     : 'NULL';
@@ -229,9 +227,9 @@ fragment tables returns [List<Table> result]
 
 fragment table  returns [Table result]
 @init { result = null; }
-	:	TABLE_HEADER_START n=ID                   d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new CommonTable($n.text, TableType.COMMON, d, col, con, tds);}
-	|	TABLE_HEADER_START n=ID ISA    OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new IsaTable($n.text, $r.text, d, col, con, tds);}
-	|	TABLE_HEADER_START n=ID STATIC OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints TABLE_DATA_HEADER tds=t_data_rows_list TABLE_FOOTER  { result = new StaticTable($n.text, $r.text, d, col, con, tds);}
+	:	TABLE_HEADER_START n=ID                   d=string TABLE_HEADER_END col=columns con=constraints (TABLE_DATA_HEADER tds=t_data_rows_list)? TABLE_FOOTER  { result = new CommonTable($n.text, TableType.COMMON, d, col, con, tds);}
+	|	TABLE_HEADER_START n=ID ISA    OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints (TABLE_DATA_HEADER tds=t_data_rows_list)? TABLE_FOOTER  { result = new IsaTable($n.text, $r.text, d, col, con, tds);}
+	|	TABLE_HEADER_START n=ID STATIC OP r=ID CP d=string TABLE_HEADER_END col=columns con=constraints  TABLE_DATA_HEADER tds=t_data_rows_list   TABLE_FOOTER  { result = new StaticTable($n.text, $r.text, d, col, con, tds);}
 	;
 
 

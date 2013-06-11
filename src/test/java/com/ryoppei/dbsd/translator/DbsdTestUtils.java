@@ -268,9 +268,9 @@ public class DbsdTestUtils
         final NumberColumn col32 = new NumberColumn(COL32_NAME, 1, 0, getNotNullOptionAsList(), COL32_DESC);
         final CommonColumn col34 = new CommonColumn(COL33_NAME, DataType.DATE, getNotNullOptionAsList(), COL33_DESC);
         final CommonColumn col35 = new CommonColumn(COL34_NAME, DataType.DATE, getNullOptionAsList(), COL34_DESC);
-        final CommonColumn col36 = new CommonColumn(COL35_NAME, DataType.TIME, getNotNullOptionAsList(), COL35_DESC);
-        final CommonColumn col37 = new CommonColumn(COL36_NAME, DataType.TIME, getNotNullOptionAsList(), COL36_DESC);
-        final CommonColumn col38 = new CommonColumn(COL37_NAME, DataType.DATE_AND_TIME, column38Options, COL37_DESC);
+        final CommonColumn col36 = new CommonColumn(COL35_NAME, DataType.DATE, getNotNullOptionAsList(), COL35_DESC);
+        final CommonColumn col37 = new CommonColumn(COL36_NAME, DataType.DATE, getNotNullOptionAsList(), COL36_DESC);
+        final CommonColumn col38 = new CommonColumn(COL37_NAME, DataType.DATE, column38Options, COL37_DESC);
         columns.add(col31);
         columns.add(col32);
         columns.add(col34);

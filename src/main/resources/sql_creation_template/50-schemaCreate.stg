@@ -47,7 +47,7 @@ column(c) ::=
 
 // ------------------- Column types -----------------------
 dataType(t, c) ::=
-<< <if(t.text)><textType(c=c)><endif><if(t.number)><numberType(c=c)><endif><if(t.boolean)><booleanType()><endif><if(t.dateTime)><dateTimeType()><endif><if(t.date)><dateType()><endif><if(t.time)><timeType()><endif>
+<< <if(t.text)><textType(c=c)><endif><if(t.number)><numberType(c=c)><endif><if(t.boolean)><booleanType()><endif><if(t.date)><dateType()><endif>
 >>
 
 textType(c) ::=
@@ -59,13 +59,7 @@ numberType(c) ::=
 booleanType() ::=
 << NUMBER(1) >>
 
-dateTimeType() ::=
-<< DATE >>
-
 dateType() ::=
-<< DATE >>
-
-timeType() ::=
 << DATE >>
 
 
@@ -85,7 +79,7 @@ null() ::=
 
 defaultValue(d)
 ::=
-<< default <if(d.value.dataType.dateTime)><dateDefault(d)><else><d.value.content><endif> >>
+<< default <if(d.value.dataType.date)><dateDefault(d)><else><d.value.content><endif> >>
 
 // in this version the only defaultValue for date data is NOW
 dateDefault(d)
