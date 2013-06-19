@@ -44,9 +44,10 @@ insert into <t.name> values (<dr:data(d=it); separator=", ">);
 
 // ------------------ Data depending on type --------------------------
 data(d) ::=
-<< <if(d.dataType.text)><text_data(d=d)><endif><if(d.dataType.number)><number_data(d=d)><endif><if(d.dataType.boolean)><boolean_data(d=d)><endif><if(d.dataType.date)><date_data(d=d)><endif> >>
+<< <if(d.dataType)><if(d.dataType.text)><text_data(d=d)><endif><if(d.dataType.number)><number_data(d=d)><endif><if(d.dataType.boolean)><boolean_data(d=d)><endif><if(d.dataType.date)><date_data(d=d)><endif>
+   <else><d.content><endif> >>
 
-text_data(d) ::=
+text_data(d)::=
 <<'<d.content>'>>
 
 number_data(d) ::=

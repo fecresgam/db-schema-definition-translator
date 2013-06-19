@@ -24,20 +24,27 @@ package com.ryoppei.dbsd.translator.dto.data;
 /**
  * The intermediate representation of an Abstract Data
  */
-public abstract class AbstractData implements Data
+public class CommonData implements Data
 {
 
-    String content;
+    private final String content;
 
+    static public final Data NULL = new CommonData("NULL");
 
     /**
      * Creates a new Abstract Data.
      *
      * @param content such information.
      */
-    protected AbstractData(String content)
+    protected CommonData(String content)
     {
         this.content = content;
+    }
+
+    @Override
+    public DataType getDataType()
+    {
+        return null;
     }
 
     @Override

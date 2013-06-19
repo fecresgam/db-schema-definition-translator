@@ -43,6 +43,7 @@ import com.ryoppei.dbsd.translator.dto.columns.CommonColumn;
 import com.ryoppei.dbsd.translator.dto.columns.NumberColumn;
 import com.ryoppei.dbsd.translator.dto.columns.TextColumn;
 
+import com.ryoppei.dbsd.translator.dto.data.CommonData;
 import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
 import com.ryoppei.dbsd.translator.dto.data.NumberData;
@@ -302,6 +303,7 @@ fragment t_data_row returns [Data result]
   | NOW       {result = DateData.NOW;}
   | TRUE      {result = BooleanData.TRUE;}
   | FALSE     {result = BooleanData.FALSE;}
+  | NULL      {result = CommonData.NULL;}
 
   ;
 

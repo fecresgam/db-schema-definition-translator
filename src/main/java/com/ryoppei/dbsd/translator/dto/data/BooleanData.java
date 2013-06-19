@@ -24,7 +24,7 @@ package com.ryoppei.dbsd.translator.dto.data;
 /**
  * The intermediate representation of a Date Data
  */
-public class BooleanData extends AbstractData
+public class BooleanData extends CommonData
 {
     /**
      * The boolean value TRUE

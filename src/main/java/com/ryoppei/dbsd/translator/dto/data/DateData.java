@@ -24,7 +24,7 @@ package com.ryoppei.dbsd.translator.dto.data;
 /**
  * The intermediate representation of a Date Data
  */
-public class DateData extends AbstractData
+public class DateData extends CommonData
 {
     /**
      * The current date

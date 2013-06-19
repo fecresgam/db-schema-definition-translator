@@ -24,7 +24,7 @@ package com.ryoppei.dbsd.translator.dto.data;
 /**
  * The intermediate representation of a Number Data
  */
-public class NumberData extends AbstractData
+public class NumberData extends CommonData
 {
     private int precision;
     private int scale;
@@ -58,6 +58,7 @@ public class NumberData extends AbstractData
      *
      * @return such information.
      */
+    @SuppressWarnings("unused")
     public Integer getPrecision()
     {
         return  this.precision;
@@ -68,6 +69,7 @@ public class NumberData extends AbstractData
      *
      * @return such information.
      */
+    @SuppressWarnings("unused")
     private Integer getScale()
     {
         return this.scale;

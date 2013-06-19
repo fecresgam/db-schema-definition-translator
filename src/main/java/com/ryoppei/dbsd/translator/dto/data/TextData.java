@@ -23,7 +23,7 @@ package com.ryoppei.dbsd.translator.dto.data;
 /**
  * The intermediate representation of a Text Data
  */
-public class TextData extends AbstractData
+public class TextData extends CommonData
 {
     /**
      * Creates a new Text Data.
