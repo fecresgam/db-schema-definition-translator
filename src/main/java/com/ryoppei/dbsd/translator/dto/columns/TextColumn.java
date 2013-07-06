@@ -59,4 +59,15 @@ public class TextColumn extends CommonColumn
     {
         return size;
     }
+
+    /**
+     * Retrieves true is extra large.
+     *
+     * @return such information.
+     */
+    public boolean isExtraLarge()
+    {
+        return size == null;
+    }
+
 }

@@ -51,7 +51,7 @@ dataType(t, c) ::=
 >>
 
 textType(c) ::=
-<< VARCHAR2(<c.size> CHAR) >>
+<< <if(c.extraLarge)>CLOB<else>VARCHAR2(<c.size> CHAR)<endif> >>
 
 numberType(c) ::=
 << NUMBER<if(c.precision)>(<c.precision><if(c.scale)>,<c.scale><endif>)<endif> >>

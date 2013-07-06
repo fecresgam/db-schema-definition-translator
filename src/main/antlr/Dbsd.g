@@ -241,7 +241,8 @@ fragment columns returns [List<Column> result]
   ;
 
 fragment column returns [Column result]
-  : i=ID I TXT  OP n=INT CP           I co=column_options? I d=string SC  {result = new TextColumn  ($i.text, Integer.valueOf($n.text), co, d);}
+  : i=ID I TXT                        I co=column_options? I d=string SC  {result = new TextColumn  ($i.text, null, co, d);}
+  | i=ID I TXT  OP n=INT CP           I co=column_options? I d=string SC  {result = new TextColumn  ($i.text, Integer.valueOf($n.text), co, d);}
   | i=ID I NUM                        I co=column_options? I d=string SC  {result = new NumberColumn($i.text, null,  null, co, d);}
   | i=ID I NUM  OP n=INT CP           I co=column_options? I d=string SC  {result = new NumberColumn($i.text, Integer.valueOf($n.text),  null, co, d);}
   | i=ID I NUM  OP n=INT CM n2=INT CP I co=column_options? I d=string SC  {result = new NumberColumn($i.text, Integer.valueOf($n.text), Integer.valueOf($n2.text), co, d);}
