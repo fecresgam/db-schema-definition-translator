@@ -39,7 +39,7 @@ public class DbsCreationSqlGenerator extends AbstractDbsTemplateBasedGenerator
     private static final String DBS_SQL_CREATION_TEMPLATE_FILE_NAME_100 =
             "100-grants";
     private static final String DBS_SQL_CREATION_TEMPLATE_FILE_NAME_110 =
-            "110-synonims";
+            "110-synonyms";
 
     private static final String TEMPLATES_FOLDER =
             "/sql_creation_template/";
