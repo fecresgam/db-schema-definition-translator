@@ -66,8 +66,8 @@ As you can see this is the format:
 * Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
 
 * __Comments:__ Any place in the code (expect inside the "Literal SQL Code block") comments could be inserted
-  * __"//"__  One line comment
-  * __"/* */"__ Multiline comment
+  * __"//":__  One line comment
+  * __"/* */":__ Multiline comment
 
 ### Constant Values ###
 Some constant values are defined to use as column default value or in the "Table data rows" section.
