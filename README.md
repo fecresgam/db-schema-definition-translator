@@ -71,10 +71,10 @@ As you can see this is the format:
 
 ### Constant Values ###
 Some constant values are defined to use as column default value or in the "Table data rows" section.
-  * NULL: to be used with all data types.
-  * NOW: to be used with date data type. (equivalent to SYSDATE in ORACLE)
-  * TRUE: to be used with boolean data type.
-  * FALSE: to be used with boolean data type.
+  * __NULL__: to be used with all data types.
+  * __TRUE__: to be used with boolean data type.
+  * __FALSE__: to be used with boolean data type.
+  * __NOW__: to be used with date data type. Similar to SYSDATE in ORACLE.
 
 
 
