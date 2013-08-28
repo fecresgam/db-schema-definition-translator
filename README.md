@@ -25,47 +25,47 @@ It's recommended to take a look to the [.dbsd file example][2] that uses almost 
 As you can see this is the format:
 
 * General Settings.
-  * OWNER(name): Defines the DB owner.
-  * USER(name): Defines the DB user.
-  * USER_ROLE(name): Defines the role of the DB user.
-  * DEFAULT_TABLE_TABLESPACE(name): Defines the tables default tablespace.
-  * DEFAULT_INDEX_TABLESPACE(name): Defines the indexes default tablespace.
-  * TARGET_DBMS(dbms): Defines the target DBMS. Currently the only valid value is 'ORACLE'
+  * __OWNER(name):__ Defines the DB owner.
+  * __USER(name):__ Defines the DB user.
+  * __USER_ROLE(name):__ Defines the role of the DB user.
+  * __DEFAULT_TABLE_TABLESPACE(name):__ Defines the tables default tablespace.
+  * __DEFAULT_INDEX_TABLESPACE(name):__ Defines the indexes default tablespace.
+  * __TARGET_DBMS(dbms):__ Defines the target DBMS. Currently the only valid value is 'ORACLE'
 * Tables
-  * "<<-- name optional_type 'description' --> ": Defines the table name and description and optionally its type.
+  * __"<<-- name optional_type 'description' --> ":__ Defines the table name and description and optionally its type.
     * Where types could be
-      * STATIC(column_name): Define a static table.
-      * ISA(table_name): Defines a table with an "IS A" relation with another table.
+      * __STATIC(column_name):__ Define a static table.
+      * __ISA(table_name):__ Defines a table with an "IS A" relation with another table.
   * Columns
-    * "name | col_type | col_options | 'description' ;" : Defines a column.
+    * __"name | col_type | col_options | 'description' ;" :__ Defines a column.
       * Where 'col_type' could be:
-        * NUM(precision,scale) or NUM(precision): Number type.
-        * TXT(size): Text type.
-        * BOOL: Boolean type.
-        * DATE_TIME: Date & time type.
-        * DATE: Date only type.
-        * TIME: Time only type.
+        * __NUM(precision,scale) or NUM(precision):__ Number type.
+        * __TXT(size):__ Text type.
+        * __BOOL:__ Boolean type.
+        * __DATE_TIME:__ Date & time type.
+        * __DATE:__ Date only type.
+        * __TIME:__ Time only type.
       * Where 'col_options' could be:
-        * NULL: Defines a nullable column.
-        * NOT_NULL: Defines a non-nullable column.
-        * RO: Defines a read only column.
-        * DEF(value): Defines the default value of a column.
-  * "##     ##": The constraints header
+        * __NULL:__ Defines a nullable column.
+        * __NOT_NULL:__ Defines a non-nullable column.
+        * __RO:__ Defines a read only column.
+        * __DEF(value):__ Defines the default value of a column.
+  * __"##     ##":__ The constraints header
   * Constraints
-    * "name | const_definition | options ;" : Defines a constraint.
+    * __"name | const_definition | options ;" :__ Defines a constraint.
       * Where "const_definition" could be:
-        * IND(column): Defines an index.
-        * PK(column_list): Defines a Primary Key constraint.
-        * UK(column_list): Defines a Unique constraint.
-        * CHK(column 'condition'): Defines a Check constraint.
-        * FK(column_list)->table.(column_list): Defines a Foreign Key constraint.
-      * Where "options" could be:
-        * USE_IND(name): Define a index used by a PK (only in PK constraints).
-  * "++     ++": The table data rows header (only in STATIC tables).
+        * __IND(column):__ Defines an index.
+        * __PK(column_list):__ Defines a Primary Key constraint.
+        * __UK(column_list):__ Defines a Unique constraint.
+        * __CHK(column 'condition'):__ Defines a Check constraint.
+        * __FK(column_list)->table.(column_list):__ Defines a Foreign Key constraint.
+      * Where "options" could be:__
+        * __USE_IND(name):__ Define a index used by a PK (only in PK constraints).
+  * __"++     ++":__ The table data rows header (only in STATIC tables).
   * Table data rows.
-    * "( data, data ...);" : Defines a data row (only in STATIC tables).
+    * __"( data, data ...);" :__ Defines a data row (only in STATIC tables).
 * Sequences
-  * SEQUENCE(name): Defines a sequence.
+  * __SEQUENCE(name):__ Defines a sequence.
 * Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
 
 
