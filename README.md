@@ -68,8 +68,8 @@ As you can see this is the format:
 * Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
 
 * Comments: Any place in the code (expect inside the "Literal SQL Code block") comments could be inserted
-  * __//__ One line comment
-  * __/* */__ Multiline comment
+  * __ // __    One line comment
+  * __ /* */ __ Multiline comment
 
 
 
