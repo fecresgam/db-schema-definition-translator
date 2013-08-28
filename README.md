@@ -1,5 +1,5 @@
-DB Schema Definition Translator user manual
-===========================================
+DB Schema Definition Translator
+===============================
 
 DB Schema definition translator is a tool that helps in the DB schema changes managing.
 It allows to translate between different representations of a DB schema.
@@ -12,24 +12,15 @@ In this version these are the available formats:
   * Graphviz diagram (.dot)
 
 
-Command line usage
-------------------
+Usage
+-----
 
-The tool could be use via the command-line ?convert-dbsd?:
-
-  convert-dbsd mode input_file output_folder output_file_prefix
-     Where the mode could be:
-        -h: prints a help message.
-        -o FORMAT: defines the output format.
-           sql: to obtain the DB creation PL/SQL scripts.
-           img: to obtain a visual representation.
+It could be used via command line but it's recommended to be used via it's [maven plugin][1].
 
 
-The ?DB Schema Definition? format grammar
+The ?DB Schema Definition? grammar format
 -----------------------------------------
-
-The next screen-shots shows an example usage using all the possibilities:
-
+It's recommended to take a look to the [.dbsd file example][2] that uses almost all the DBSD grammar possibilities.
 
 As you can see this is the format:
 General Settings.
@@ -75,3 +66,9 @@ Table data rows.
 Sequences
 SEQUENCE(name): Defines a sequence.
 Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
+
+
+External References
+--------------------
+[1]: https://github.com/ryoppei/db-schema-definition-translator-maven-plugin  "DB Schema Definition Translator Maven Plugin"
+[2]: https://github.com/ryoppei/db-schema-definition-translator/blob/master/src/test/resources/testInput.dbsd ".dbsd File Example"
