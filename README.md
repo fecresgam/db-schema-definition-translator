@@ -36,8 +36,7 @@ As you can see this is the format:
     * Where types could be
       * __STATIC(column_name):__ Define a static table.
       * __ISA(table_name):__ Defines a table with an "IS A" relation with another table.
-  * Columns
-    * __"name | col_type | col_options | 'description' ;" :__ Defines a column.
+  * Columns: __"name | col_type | col_options | 'description' ;" :__ Defines a column.
       * Where 'col_type' could be:
         * __NUM(precision,scale) or NUM(precision):__ Number type.
         * __TXT(size):__ Text type.
@@ -51,8 +50,7 @@ As you can see this is the format:
         * __RO:__ Defines a read only column.
         * __DEF(value):__ Defines the default value of a column.
   * __"##     ##":__ The constraints header
-  * Constraints
-    * __"name | const_definition | options ;" :__ Defines a constraint.
+  * Constraints: __"name | const_definition | options ;" :__ Defines a constraint.
       * Where "const_definition" could be:
         * __IND(column):__ Defines an index.
         * __PK(column_list):__ Defines a Primary Key constraint.
