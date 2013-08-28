@@ -35,16 +35,14 @@ As you can see this is the format:
 * Tables
   * __"<<-- name optional_type 'description' --> ":__ Defines the table name and description and optionally its type.
     * Where types could be
-      * __STATIC(column_name):__ Define a static table.
-      * __ISA(table_name):__ Defines a table with an "IS A" relation with another table.
+      * __STATIC(column_name):__ Define a static table using "column_name" data as constants names.
+      * __ISA(table_name):__ Defines a table with an "IS A" relation with another table "table_name".
   * Columns: __"name | col_type | col_options | 'description' ;" :__ Defines a column.
       * Where 'col_type' could be:
-        * __NUM(precision,scale) or NUM(precision):__ Number type.
-        * __TXT(size):__ Text type.
+        * __NUM(precision,scale), NUM(precision) or NUM:__ Number type.
+        * __TXT(size) or TXT:__ Text type.
         * __BOOL:__ Boolean type.
-        * __DATE_TIME:__ Date & time type.
-        * __DATE:__ Date only type.
-        * __TIME:__ Time only type.
+        * __DATE:__ Date and time type.
       * Where 'col_options' could be:
         * __NULL:__ Defines a nullable column.
         * __NOT_NULL:__ Defines a non-nullable column.
@@ -53,23 +51,30 @@ As you can see this is the format:
   * __"##     ##":__ The constraints header
   * Constraints: __"name | const_definition | options ;" :__ Defines a constraint.
       * Where "const_definition" could be:
-        * __IND(column):__ Defines an index.
+        * __IND(column):__ Defines an index".
         * __PK(column_list):__ Defines a Primary Key constraint.
         * __UK(column_list):__ Defines a Unique constraint.
         * __CHK(column 'condition'):__ Defines a Check constraint.
-        * __FK(column_list)->table.(column_list):__ Defines a Foreign Key constraint.
+        * __FK(column_list)->other_table.(column_list):__ Defines a Foreign Key constraint.
       * Where "options" could be:__
         * __USE_IND(name):__ Define a index used by a PK (only in PK constraints).
-  * __"++     ++":__ The table data rows header (only in STATIC tables).
+  * __"++     ++":__ The table data rows header. (Mandatory in Static tables).
   * Table data rows.
-    * __"( data, data ...);" :__ Defines a data row (only in STATIC tables).
+    * __"( data, data ...);" :__ Defines a data row (Mandatory in Static tables).
 * Sequences
   * __SEQUENCE(name):__ Defines a sequence.
 * Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
 
 * __Comments:__ Any place in the code (expect inside the "Literal SQL Code block") comments could be inserted
-  * __//__  One line comment
-  * __/* */__ Multiline comment
+  * __"//"__  One line comment
+  * __"/* */"__ Multiline comment
+
+### Constant Values ###
+Some constant values are defined to use as column default value or in the "Table data rows" section.
+  * NULL: to be used with all data types.
+  * NOW: to be used with date data type. (equivalent to SYSDATE in ORACLE)
+  * TRUE: to be used with boolean data type.
+  * FALSE: to be used with boolean data type.
 
 
 
