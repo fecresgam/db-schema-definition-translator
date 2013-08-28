@@ -39,25 +39,25 @@ As you can see this is the format:
       * __ISA(table_name):__ Defines a table with an "IS A" relation with another table "table_name".
   * Columns: __"name | col_type | col_options | 'description' ;" :__ Defines a column.
       * Where 'col_type' could be:
-        * __NUM(precision,scale), NUM(precision) or NUM:__ Number type.
-        * __TXT(size) or TXT:__ Text type.
-        * __BOOL:__ Boolean type.
-        * __DATE:__ Date and time type.
+         * __NUM(precision,scale), NUM(precision) or NUM:__ Number type.
+         * __TXT(size) or TXT:__ Text type.
+         * __BOOL:__ Boolean type.
+         * __DATE:__ Date and time type.
       * Where 'col_options' could be:
-        * __NULL:__ Defines a nullable column.
-        * __NOT_NULL:__ Defines a non-nullable column.
-        * __RO:__ Defines a read only column.
-        * __DEF(value):__ Defines the default value of a column.
+         * __NULL:__ Defines a nullable column.
+         * __NOT_NULL:__ Defines a non-nullable column.
+         * __RO:__ Defines a read only column.
+         * __DEF(value):__ Defines the default value of a column.
   * __"##     ##":__ The constraints header
   * Constraints: __"name | const_definition | options ;" :__ Defines a constraint.
       * Where "const_definition" could be:
-        * __IND(column):__ Defines an index".
-        * __PK(column_list):__ Defines a Primary Key constraint.
-        * __UK(column_list):__ Defines a Unique constraint.
-        * __CHK(column 'condition'):__ Defines a Check constraint.
-        * __FK(column_list)->other_table.(column_list):__ Defines a Foreign Key constraint.
+         * __IND(column):__ Defines an index".
+         * __PK(column_list):__ Defines a Primary Key constraint.
+         * __UK(column_list):__ Defines a Unique constraint.
+         * __CHK(column 'condition'):__ Defines a Check constraint.
+         * __FK(column_list)->other_table.(column_list):__ Defines a Foreign Key constraint.
       * Where "options" could be:__
-        * __USE_IND(name):__ Define a index used by a PK (only in PK constraints).
+         * __USE_IND(name):__ Define a index used by a PK (only in PK constraints).
   * __"++     ++":__ The table data rows header. (Mandatory in Static tables).
   * Table data rows.
     * __"( data, data ...);" :__ Defines a data row (Mandatory in Static tables).
