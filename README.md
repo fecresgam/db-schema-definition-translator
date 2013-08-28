@@ -21,6 +21,7 @@ It could be used via command line but it's recommended to be used via it's [mave
 "DB Schema Definition" grammar format
 -----------------------------------------
 It's recommended to take a look to the [.dbsd file example][2] that uses almost all the DBSD grammar possibilities.
+The whole grammar is represented in the [DBSD Antlr 3 Grammar definition][3].
 
 As you can see this is the format:
 
@@ -71,3 +72,4 @@ As you can see this is the format:
 
 [1]: https://github.com/ryoppei/db-schema-definition-translator-maven-plugin  "DB Schema Definition Translator Maven Plugin"
 [2]: src/test/resources/testInput.dbsd ".dbsd File Example"
+[3]: src/main/antlr/Dbsd.g "DBSD Antlr 3 Grammar"
