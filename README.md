@@ -63,7 +63,7 @@ As you can see this is the format:
         * USE_IND(name): Define a index used by a PK (only in PK constraints).
   * "++     ++": The table data rows header (only in STATIC tables).
   * Table data rows.
-    * "( data, data ?.);" : Defines a data row (only in STATIC tables).
+    * "( data, data ...);" : Defines a data row (only in STATIC tables).
 * Sequences
   * SEQUENCE(name): Defines a sequence.
 * Literal SQL Code: All the code between '{' and '}' will be copied unchanged to the output files.
@@ -72,4 +72,4 @@ As you can see this is the format:
 
 
 [1]: https://github.com/ryoppei/db-schema-definition-translator-maven-plugin  "DB Schema Definition Translator Maven Plugin"
-[2]: https://github.com/ryoppei/db-schema-definition-translator/blob/master/src/test/resources/testInput.dbsd ".dbsd File Example"
+[2]: src/test/resources/testInput.dbsd ".dbsd File Example"
