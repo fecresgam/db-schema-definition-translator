@@ -189,7 +189,7 @@ WS  :   ( ' '
 // ***************** parser rules:
 
 db_schema_definition returns [CommonDataBaseSchema result]
-     :  o=owner u=user r=role dt=default_table_ts di=default_index_ts dbms=target_dbms t=tables s=sequences l=LITERAL_CODE
+     :  o=owner u=user r=role dt=default_table_ts di=default_index_ts dbms=target_dbms t=tables (s=sequences)? l=LITERAL_CODE
                              { dbsd = new CommonDataBaseSchema(o, u, r, dt, di, dbms, t, s, ParserUtils.cleanFakeString($l.text));
                                result=dbsd;}
      ;
