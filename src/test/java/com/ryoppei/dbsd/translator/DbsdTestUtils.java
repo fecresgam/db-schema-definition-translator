@@ -226,7 +226,7 @@ public class DbsdTestUtils
         columns.add(col24);
 
 
-        final IndexConstraint cons21 = new IndexConstraint(CONS21_NAME, COL21_NAME);
+        final IndexConstraint cons21 = new IndexConstraint(CONS21_NAME, COL21_NAME, IndexConstraint.OrderType.ASC);
 
         List<String> col_cons_221 = new ArrayList<String>();
         col_cons_221.add(COL22_NAME);

@@ -167,6 +167,9 @@ FALSE : 'FALSE';
 ISA : 'ISA';
 STATIC : 'STATIC';
 
+ASC : 'ASC';
+DESC : 'DESC';
+
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
@@ -270,7 +273,9 @@ fragment constraints returns [List<Constraint> result]
   ;
 
 fragment constraint returns [Constraint result]
-  : i=ID I IND OP c=ID CP I SC  {result = new IndexConstraint($i.text, $c.text);}
+  : i=ID I IND OP c=ID CP I SC  {result = new IndexConstraint($i.text, $c.text, null);}
+  | i=ID I IND OP c=ID ASC CP I SC  {result = new IndexConstraint($i.text, $c.text, IndexConstraint.OrderType.ASC);}
+  | i=ID I IND OP c=ID DESC CP I SC  {result = new IndexConstraint($i.text, $c.text, IndexConstraint.OrderType.DESC);}
   | i=ID I PK  OP cs=ids CP I ui=uses_index? SC  {result = new PrimaryKeyConstraint($i.text, cs, ui);}
   | i=ID I UK  OP cs=ids CP I SC  {result = new UniqueKeyConstraint($i.text, cs);}
   | i=ID I CHK OP c=ID cd=string CP I SC  {result = new CheckConstraint($i.text, $c.text, cd);}

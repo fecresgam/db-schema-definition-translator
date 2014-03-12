@@ -193,6 +193,7 @@ public class DbsdParsingTest
         assertEquals(ConstraintType.INDEX, constraint21.getType());
         final IndexConstraint constraint21b = (IndexConstraint) constraint21;
         assertEquals(DbsdTestUtils.COL21_NAME, constraint21b.getColumn());
+        assertEquals(IndexConstraint.OrderType.ASC, constraint21b.getOrderType());
         final Constraint constraint22 = table2.getConstraint(DbsdTestUtils.CONS22_NAME);
         assertEquals(DbsdTestUtils.CONS22_NAME, constraint22.getName());
         assertEquals(ConstraintType.PRIMARY_KEY, constraint22.getType());

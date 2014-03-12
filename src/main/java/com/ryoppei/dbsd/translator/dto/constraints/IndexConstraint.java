@@ -26,19 +26,23 @@ package com.ryoppei.dbsd.translator.dto.constraints;
 public class IndexConstraint extends CommonConstraint
 {
     private String column;
+    private OrderType orderType;
 
     /**
      * Creates a new Index
      *
      * @param name such information.
      * @param column such information.
+     * @param orderType such information.
      */
     public IndexConstraint(
             final String name,
-            final String column)
+            final String column,
+            final OrderType orderType)
     {
         super(name, ConstraintType.INDEX);
         this.column = column;
+        this.orderType = orderType;
     }
 
     /**
@@ -51,4 +55,18 @@ public class IndexConstraint extends CommonConstraint
         return column;
     }
 
+    /**
+     * Retrieves the order type.
+     *
+     * @return such information.
+     */
+    public OrderType getOrderType()
+    {
+        return orderType;
+    }
+
+    public static enum OrderType
+    {
+        ASC, DESC
+    }
 }
