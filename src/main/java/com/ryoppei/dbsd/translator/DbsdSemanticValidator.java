@@ -348,16 +348,19 @@ public class DbsdSemanticValidator
             final Table ownerTable)
     {
         boolean result = true;
-        final String columnName = constraint.getColumn();
+        final List<IndexConstraint.ColumnReference> columnName = constraint.getColumns();
 
-        if (!ownerTable.containsColumn(columnName))
+        for (final IndexConstraint.ColumnReference columnReference : columnName)
         {
-            result = false;
-            SystemMessagePrinter.printSystemMessage(
-                    SystemMessagePrinter.SEMANTIC_VALIDATION_ERROR_INDEX_COLUMNNOTEXISTS,
-                    columnName,
-                    constraint.getName(),
-                    ownerTable.getName());
+            if (!ownerTable.containsColumn(columnReference.getName()))
+            {
+                result = false;
+                SystemMessagePrinter.printSystemMessage(
+                        SystemMessagePrinter.SEMANTIC_VALIDATION_ERROR_INDEX_COLUMNNOTEXISTS,
+                        columnName,
+                        constraint.getName(),
+                        ownerTable.getName());
+            }
         }
 
         return result;

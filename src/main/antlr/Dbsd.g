@@ -273,13 +273,23 @@ fragment constraints returns [List<Constraint> result]
   ;
 
 fragment constraint returns [Constraint result]
-  : i=ID I IND OP c=ID CP I SC  {result = new IndexConstraint($i.text, $c.text, null);}
-  | i=ID I IND OP c=ID ASC CP I SC  {result = new IndexConstraint($i.text, $c.text, IndexConstraint.OrderType.ASC);}
-  | i=ID I IND OP c=ID DESC CP I SC  {result = new IndexConstraint($i.text, $c.text, IndexConstraint.OrderType.DESC);}
+  : i=ID I IND OP cr=column_references CP I SC  {result = new IndexConstraint($i.text, cr);}
   | i=ID I PK  OP cs=ids CP I ui=uses_index? SC  {result = new PrimaryKeyConstraint($i.text, cs, ui);}
   | i=ID I UK  OP cs=ids CP I SC  {result = new UniqueKeyConstraint($i.text, cs);}
   | i=ID I CHK OP c=ID cd=string CP I SC  {result = new CheckConstraint($i.text, $c.text, cd);}
   | i=ID I FK  OP cs=ids CP AA rt=ID DT OP rtc=ids CP I SC  {result = new ForeignKeyConstraint($i.text, cs, $rt.text, rtc);}
+  ;
+
+
+fragment column_references returns [List<IndexConstraint.ColumnReference> result]
+@init { result = new ArrayList<IndexConstraint.ColumnReference>();}
+  : cr=column_reference {result.add(cr);} ( CM cr2=column_reference {result.add(cr2);})*
+  ;
+
+fragment column_reference returns [IndexConstraint.ColumnReference result]
+  : i=ID              { result = new IndexConstraint.ColumnReference($i.text, null);}
+  | i=ID ASC          { result = new IndexConstraint.ColumnReference($i.text, IndexConstraint.OrderType.ASC);}
+  | i=ID DESC         { result = new IndexConstraint.ColumnReference($i.text, IndexConstraint.OrderType.DESC);}
   ;
 
 fragment uses_index returns [String result]

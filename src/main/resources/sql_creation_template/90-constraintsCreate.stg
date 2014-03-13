@@ -45,7 +45,7 @@ constraint(con, t, ts) ::=
 
 index(con, t, ts)
 ::=
-<< create index <con.name> on <t.name> (<con.column> <if(con.orderType)> <con.orderType> <endif>) tablespace <ts>; >>
+<< create index <con.name> on <t.name> (<column_list_ind(col=con.columns)>) tablespace <ts>; >>
 
 primaryKey(con, t)
 ::=
@@ -73,3 +73,12 @@ column_list(col)
 column (col)
 ::=
 << <col> >>
+
+// -------- Columns for indexes ------------------------
+column_list_ind(col)
+::=
+<< (<col:column_ind(col=it); separator=", ">) >>
+
+column_ind (col)
+::=
+<< <col> <col.name> <if(col.orderType)> <col.orderType> <endif> >>

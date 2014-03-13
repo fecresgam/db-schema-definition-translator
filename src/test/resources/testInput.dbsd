@@ -27,7 +27,7 @@ TARGET_DBMS(ORACLE)
   altura_en_metros | NUM(3,2) | NULL     | 'La altura de la persona expresada en metros, debe ser menor de 2,5 metros para que entre en la oficina';
   edad             | NUM(2)   | NOT_NULL | 'La edad. No se permite dos personas con la misma edad por supersticion'   ;
 ##                                                                                                                   ##
-  in_id_persona          | IND(id_persona ASC)            |                                                           ;
+  in_id_persona          | IND(id_persona ASC, edad)      |                                                           ;
   pk_persona             |  PK(id_persona)                |  USE_IND(in_id_persona)                                   ;
   chk_altura             |  CHK(altura_en_metros '< 2.5') |                                                           ;
   uk_edad                |  UK(edad)                      |                                                           ;

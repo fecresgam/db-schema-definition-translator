@@ -115,7 +115,14 @@ public class DbsdSemanticValidatorTest
     public void testIndexColumnNotExists()
             throws IOException
     {
-        final IndexConstraint cons21 = new IndexConstraint(DbsdTestUtils.CONS21_NAME, DbsdTestUtils.COL21_NAME, null);
+
+
+        final ArrayList<IndexConstraint.ColumnReference> indexConstraints =
+                new ArrayList<IndexConstraint.ColumnReference>();
+        indexConstraints.
+                add(new IndexConstraint.ColumnReference(DbsdTestUtils.COL21_NAME, IndexConstraint.OrderType.ASC));
+
+        final IndexConstraint cons21 = new IndexConstraint(DbsdTestUtils.CONS21_NAME, indexConstraints);
         List<Constraint> constraints = new ArrayList<Constraint>();
         constraints.add(cons21);
 

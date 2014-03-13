@@ -49,6 +49,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests {@link DbsdParsingTest}.
@@ -192,8 +193,14 @@ public class DbsdParsingTest
         assertEquals(DbsdTestUtils.CONS21_NAME, constraint21.getName());
         assertEquals(ConstraintType.INDEX, constraint21.getType());
         final IndexConstraint constraint21b = (IndexConstraint) constraint21;
-        assertEquals(DbsdTestUtils.COL21_NAME, constraint21b.getColumn());
-        assertEquals(IndexConstraint.OrderType.ASC, constraint21b.getOrderType());
+        final List<IndexConstraint.ColumnReference> constraint21bColumns = constraint21b.getColumns();
+        assertNotNull(constraint21bColumns);
+        final IndexConstraint.ColumnReference columnReference21b0 = constraint21bColumns.get(0);
+        assertEquals(DbsdTestUtils.COL21_NAME, columnReference21b0.getName());
+        assertEquals(IndexConstraint.OrderType.ASC, columnReference21b0.getOrderType());
+        final IndexConstraint.ColumnReference columnReference21b1 = constraint21bColumns.get(1);
+        assertEquals(DbsdTestUtils.COL24_NAME, columnReference21b1.getName());
+        assertNull(columnReference21b1.getOrderType());
         final Constraint constraint22 = table2.getConstraint(DbsdTestUtils.CONS22_NAME);
         assertEquals(DbsdTestUtils.CONS22_NAME, constraint22.getName());
         assertEquals(ConstraintType.PRIMARY_KEY, constraint22.getType());

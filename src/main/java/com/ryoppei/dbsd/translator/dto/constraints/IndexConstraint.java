@@ -20,53 +20,68 @@
 
 package com.ryoppei.dbsd.translator.dto.constraints;
 
+import java.util.List;
+
 /**
  * The intermediate representation of an Index Constraint
  */
 public class IndexConstraint extends CommonConstraint
 {
-    private String column;
-    private OrderType orderType;
+    private List<ColumnReference> columns;
 
     /**
      * Creates a new Index
      *
      * @param name such information.
-     * @param column such information.
-     * @param orderType such information.
+     * @param columns such information.
      */
     public IndexConstraint(
             final String name,
-            final String column,
-            final OrderType orderType)
+            final List<ColumnReference> columns)
     {
         super(name, ConstraintType.INDEX);
-        this.column = column;
-        this.orderType = orderType;
+        this.columns = columns;
     }
 
     /**
-     * Retrieves the column to index.
+     * Retrieves the columns to index.
      *
      * @return such information.
      */
-    public String getColumn()
+    public List<ColumnReference> getColumns()
     {
-        return column;
+        return columns;
     }
 
+
     /**
-     * Retrieves the order type.
-     *
-     * @return such information.
+     *  The intermediate representation of an Index Constraint reference columns
      */
-    public OrderType getOrderType()
+    public static class ColumnReference
     {
-        return orderType;
+        private String name;
+        private OrderType orderType;
+
+        public ColumnReference(String name, OrderType orderType)
+        {
+            this.name = name;
+            this.orderType = orderType;
+        }
+
+        public String getName()
+        {
+            return name;
+        }
+
+        public OrderType getOrderType()
+        {
+            return orderType;
+        }
     }
 
     public static enum OrderType
     {
         ASC, DESC
     }
+
 }

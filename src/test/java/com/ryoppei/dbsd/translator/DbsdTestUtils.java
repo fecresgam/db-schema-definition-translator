@@ -225,8 +225,14 @@ public class DbsdTestUtils
         columns.add(col23);
         columns.add(col24);
 
+        final ArrayList<IndexConstraint.ColumnReference> indexConstraints =
+                new ArrayList<IndexConstraint.ColumnReference>();
+        indexConstraints.
+                add(new IndexConstraint.ColumnReference(COL21_NAME, IndexConstraint.OrderType.ASC));
+        indexConstraints.
+                add(new IndexConstraint.ColumnReference(COL24_NAME, null));
 
-        final IndexConstraint cons21 = new IndexConstraint(CONS21_NAME, COL21_NAME, IndexConstraint.OrderType.ASC);
+        final IndexConstraint cons21 = new IndexConstraint(CONS21_NAME, indexConstraints);
 
         List<String> col_cons_221 = new ArrayList<String>();
         col_cons_221.add(COL22_NAME);
