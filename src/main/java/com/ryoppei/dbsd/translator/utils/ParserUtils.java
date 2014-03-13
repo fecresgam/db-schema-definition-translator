@@ -21,6 +21,8 @@
 package com.ryoppei.dbsd.translator.utils;
 
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
  * The Parser Utils
  */
@@ -40,6 +42,6 @@ public class ParserUtils
         {
             result = input.substring(1,input.length()-1);
         }
-        return result;
+        return StringEscapeUtils.unescapeJava(result);
     }
 }

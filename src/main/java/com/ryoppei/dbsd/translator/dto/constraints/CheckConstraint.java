@@ -20,6 +20,8 @@
 
 package com.ryoppei.dbsd.translator.dto.constraints;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
  * The intermediate representation of a Check Constraint
  */
@@ -42,7 +44,7 @@ public class CheckConstraint extends CommonConstraint
     {
         super(name, ConstraintType.CHECK);
         this.column = column;
-        this.condition = condition;
+        this.condition = StringEscapeUtils.unescapeJava(condition);
     }
 
     /**

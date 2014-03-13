@@ -22,6 +22,7 @@ package com.ryoppei.dbsd.translator.dto.columns;
 
 import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class CommonColumn implements Column
         this.name = name;
         this.type = type;
         this.options = options;
-        this.description = description;
+        this.description = StringEscapeUtils.unescapeJava(description);
     }
 
     @Override

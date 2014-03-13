@@ -25,6 +25,7 @@ import com.ryoppei.dbsd.translator.dto.columns.Column;
 import com.ryoppei.dbsd.translator.dto.constraints.Constraint;
 import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.utils.CollectionUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class CommonTable implements Table
 
         this.name = name;
         this.type = type;
-        this.description = description;
+        this.description = StringEscapeUtils.unescapeJava(description);
         this.orderedColumns = columns;
         this.orderedConstraints = constraints;
 

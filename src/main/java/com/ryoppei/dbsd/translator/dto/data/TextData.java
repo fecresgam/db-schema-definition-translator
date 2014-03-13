@@ -20,6 +20,8 @@
 
 package com.ryoppei.dbsd.translator.dto.data;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 /**
  * The intermediate representation of a Text Data
  */
@@ -32,7 +34,7 @@ public class TextData extends CommonData
      */
     public TextData(String content)
     {
-        super(content);
+        super(StringEscapeUtils.unescapeJava(content));
     }
 
     @Override
