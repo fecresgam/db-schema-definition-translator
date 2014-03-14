@@ -181,6 +181,12 @@ DECIMAL
   : ('0'..'9')+ '.' ('0'..'9')+
   ;
 
+SIGNED_DECIMAL : ('+'|'-')? DECIMAL
+               ;
+
+SIGNED_INT : ('+'|'-')? INT
+           ;
+
 WS  :   ( ' '
         | '\t'
         | '\r'
@@ -313,13 +319,13 @@ fragment t_data_rows returns [List<Data> result]
   ;
 
 fragment t_data_row returns [Data result]
-  : t=DECIMAL {result = new NumberData($t.text);}
-  | t=INT     {result = new NumberData($t.text);}
-  | s=string  {result = new TextData(s);}
-  | NOW       {result = DateData.NOW;}
-  | TRUE      {result = BooleanData.TRUE;}
-  | FALSE     {result = BooleanData.FALSE;}
-  | NULL      {result = CommonData.NULL;}
+  | t=SIGNED_DECIMAL {result = new NumberData($t.text);}
+  | t=SIGNED_INT     {result = new NumberData($t.text);}
+  | s=string         {result = new TextData(s);}
+  | NOW              {result = DateData.NOW;}
+  | TRUE             {result = BooleanData.TRUE;}
+  | FALSE            {result = BooleanData.FALSE;}
+  | NULL             {result = CommonData.NULL;}
 
   ;
 

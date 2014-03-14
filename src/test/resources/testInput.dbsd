@@ -18,6 +18,7 @@ TARGET_DBMS(ORACLE)
 (  1, 'Secretario' , FALSE                                                            );
 (  2, 'Programador', FALSE                                                            );
 (  3, 'Directivo'  , TRUE                                                             );
+( -8, 'Espia'      , FALSE                                                            );
 <<------------------------------------------------------------------------------------>>
 
 

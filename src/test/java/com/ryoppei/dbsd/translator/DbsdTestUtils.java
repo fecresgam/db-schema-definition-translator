@@ -69,9 +69,16 @@ public class DbsdTestUtils
     static final String COL11_DESC = "Identificador unico de empleado";
     static final String COL12_DESC = "El nombre de tipo de empleado";
     static final String CONS11_NAME = "pk_tipo_empleado";
+    static final String TABLE_DATA111 = "1";
     static final String TABLE_DATA112 = "Secretario";
+    static final String TABLE_DATA121 = "2";
     static final String TABLE_DATA122 = "Programador";
+    static final String TABLE_DATA131 = "3";
     static final String TABLE_DATA132 = "Directivo";
+    static final String TABLE_DATA141 = "-8";
+    static final String TABLE_DATA142 = "Espia";
+
+
     // Table 2 constants
     static final String TABLE2_NAME = "personas";
     static final String TABLE2_DESC = "Las personas";

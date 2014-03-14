@@ -38,13 +38,27 @@ public class NumberData extends CommonData
     {
         super(content);
 
-        int length = content.length();
-        int indexOfDot = content.indexOf('.');
+        final String unsignedNumber = removeSign(content);
+        int length = unsignedNumber.length();
+        int indexOfDot = unsignedNumber.indexOf('.');
 
         this.precision =
                 (indexOfDot != -1) ? length -1 : length;
         this.scale =
                 (indexOfDot != -1) ? length - indexOfDot - 1: 0;
+    }
+
+    /**
+     * Removes the sign from a number.
+     *
+     * @param content the number.
+     * @return unsigned number.
+     */
+    private static String removeSign(final String content)
+    {
+        return (content.startsWith("+") || content.startsWith("-")) ?
+                content.substring(1) :
+                content;
     }
 
     @Override
@@ -70,7 +84,7 @@ public class NumberData extends CommonData
      * @return such information.
      */
     @SuppressWarnings("unused")
-    private Integer getScale()
+    public Integer getScale()
     {
         return this.scale;
     }

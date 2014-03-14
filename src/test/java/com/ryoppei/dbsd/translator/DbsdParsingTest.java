@@ -40,8 +40,10 @@ import com.ryoppei.dbsd.translator.dto.constraints.IndexConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.PrimaryKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.constraints.UniqueKeyConstraint;
 import com.ryoppei.dbsd.translator.dto.data.BooleanData;
+import com.ryoppei.dbsd.translator.dto.data.Data;
 import com.ryoppei.dbsd.translator.dto.data.DataType;
 import com.ryoppei.dbsd.translator.dto.data.DateData;
+import com.ryoppei.dbsd.translator.dto.data.NumberData;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -136,9 +138,59 @@ public class DbsdParsingTest
         final List<String> constraint11bColumns = constraint11b.getColumns();
         assertEquals(1, constraint11bColumns.size());
         assertEquals(DbsdTestUtils.COL11_NAME, constraint11bColumns.get(0));
-        // Table data rows
-        //TODO fcres: falta los inserts
 
+        // Table data rows
+        final List<List<Data>> table1DataRows = table1.getDataRows();
+        assertNotNull(table1DataRows);
+        assertEquals(4, table1DataRows.size());
+        final List<Data> table1DataRow1 = table1DataRows.get(0);
+        assertNotNull(table1DataRow1.get(0));
+        assertEquals(DataType.NUMBER, table1DataRow1.get(0).getDataType());
+        assertEquals(new Integer(1), ((NumberData) table1DataRow1.get(0)).getPrecision());
+        assertEquals(new Integer(0), ((NumberData) table1DataRow1.get(0)).getScale());
+        assertEquals("1", table1DataRow1.get(0).getContent());
+        assertNotNull(table1DataRow1.get(1));
+        assertEquals(DataType.TEXT, table1DataRow1.get(1).getDataType());
+        assertEquals("Secretario", table1DataRow1.get(1).getContent());
+        assertNotNull(table1DataRow1.get(2));
+        assertEquals(DataType.BOOLEAN, table1DataRow1.get(2).getDataType());
+        assertEquals(BooleanData.FALSE, table1DataRow1.get(2));
+        final List<Data> table1DataRow2 = table1DataRows.get(1);
+        assertNotNull(table1DataRow2.get(0));
+        assertEquals(DataType.NUMBER, table1DataRow2.get(0).getDataType());
+        assertEquals(new Integer(1), ((NumberData) table1DataRow2.get(0)).getPrecision());
+        assertEquals(new Integer(0), ((NumberData) table1DataRow2.get(0)).getScale());
+        assertEquals("2", table1DataRow2.get(0).getContent());
+        assertNotNull(table1DataRow2.get(1));
+        assertEquals(DataType.TEXT, table1DataRow2.get(1).getDataType());
+        assertEquals("Programador", table1DataRow2.get(1).getContent());
+        assertNotNull(table1DataRow2.get(2));
+        assertEquals(DataType.BOOLEAN, table1DataRow2.get(2).getDataType());
+        assertEquals(BooleanData.FALSE, table1DataRow2.get(2));
+        final List<Data> table1DataRow3 = table1DataRows.get(2);
+        assertNotNull(table1DataRow3.get(0));
+        assertEquals(DataType.NUMBER, table1DataRow3.get(0).getDataType());
+        assertEquals(new Integer(1), ((NumberData) table1DataRow3.get(0)).getPrecision());
+        assertEquals(new Integer(0), ((NumberData) table1DataRow3.get(0)).getScale());
+        assertEquals("3", table1DataRow3.get(0).getContent());
+        assertNotNull(table1DataRow3.get(1));
+        assertEquals(DataType.TEXT, table1DataRow3.get(1).getDataType());
+        assertEquals("Directivo", table1DataRow3.get(1).getContent());
+        assertNotNull(table1DataRow3.get(2));
+        assertEquals(DataType.BOOLEAN, table1DataRow3.get(2).getDataType());
+        assertEquals(BooleanData.TRUE, table1DataRow3.get(2));
+        final List<Data> table1DataRow4 = table1DataRows.get(3);
+        assertNotNull(table1DataRow4.get(0));
+        assertEquals(DataType.NUMBER, table1DataRow4.get(0).getDataType());
+        assertEquals(new Integer(1), ((NumberData) table1DataRow4.get(0)).getPrecision());
+        assertEquals(new Integer(0), ((NumberData) table1DataRow4.get(0)).getScale());
+        assertEquals("-8", table1DataRow4.get(0).getContent());
+        assertNotNull(table1DataRow4.get(1));
+        assertEquals(DataType.TEXT, table1DataRow4.get(1).getDataType());
+        assertEquals("Espia", table1DataRow4.get(1).getContent());
+        assertNotNull(table1DataRow4.get(2));
+        assertEquals(DataType.BOOLEAN, table1DataRow4.get(2).getDataType());
+        assertEquals(BooleanData.FALSE, table1DataRow4.get(2));
 
         // ----------- Table2 ----------------------
         final Table table2 = dbs.getTable(DbsdTestUtils.TABLE2_NAME);
