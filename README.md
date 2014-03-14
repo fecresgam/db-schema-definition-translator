@@ -78,6 +78,6 @@ Some constant values are defined to use as column default value or in the "Table
 
 
 
-[1]: https://github.com/ryoppei/db-schema-definition-translator-maven-plugin  "DB Schema Definition Translator Maven Plugin"
+[1]: https://github.com/fecresgam/db-schema-definition-translator-maven-plugin  "DB Schema Definition Translator Maven Plugin"
 [2]: src/test/resources/testInput.dbsd ".dbsd File Example"
 [3]: src/main/antlr/Dbsd.g "DBSD Antlr 3 Grammar"

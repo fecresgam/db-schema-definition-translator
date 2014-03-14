@@ -88,8 +88,8 @@
                     <index>true</index>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>com.ryoppei.dbsd.translator.DbsdConversor</mainClass>
-                        <packageName>com.ryoppei.dbsd.translator</packageName>
+                        <mainClass>com.fecresgam.dbsd.translator.DbsdConversor</mainClass>
+                        <packageName>com.fecresgam.dbsd.translator</packageName>
                         <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                     </manifest>
                 </archive>
