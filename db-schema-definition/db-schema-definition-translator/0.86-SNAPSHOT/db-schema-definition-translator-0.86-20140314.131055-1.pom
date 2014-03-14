@@ -4,7 +4,7 @@
   <groupId>db-schema-definition</groupId>
   <artifactId>db-schema-definition-translator</artifactId>
   <packaging>jar</packaging>
-  <version>0.85-SNAPSHOT</version>
+  <version>0.86-SNAPSHOT</version>
   <name>DB Schema Definition Translator</name>
   <description>Data Base Schema Definition Translator</description>
   <inceptionYear>2013</inceptionYear>
@@ -88,8 +88,8 @@
                     <index>true</index>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>com.ryoppei.dbsd.translator.DbsdConversor</mainClass>
-                        <packageName>com.ryoppei.dbsd.translator</packageName>
+                        <mainClass>com.fecresgam.dbsd.translator.DbsdConversor</mainClass>
+                        <packageName>com.fecresgam.dbsd.translator</packageName>
                         <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                     </manifest>
                 </archive>
@@ -133,6 +133,26 @@
                 </execution>
             </executions>
         </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <useReleaseProfile>false</useReleaseProfile>
+                <goals>deploy</goals>
+                <commitByProject>true</commitByProject>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>default-execution</id>
+                    <goals>
+                        <goal>prepare</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
     </plugins>
   </build>
 
