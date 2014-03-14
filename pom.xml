@@ -4,7 +4,7 @@
   <groupId>db-schema-definition</groupId>
   <artifactId>db-schema-definition-translator</artifactId>
   <packaging>jar</packaging>
-  <version>0.87.3-SNAPSHOT</version>
+  <version>0.87.4-SNAPSHOT</version>
   <name>DB Schema Definition Translator</name>
   <description>Data Base Schema Definition Translator</description>
   <inceptionYear>2013</inceptionYear>
@@ -34,7 +34,7 @@
     <connection>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</connection>
     <developerConnection>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</developerConnection>
     <url>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</url>
-    <tag>HEAD</tag>
+    <tag>db-schema-definition-translator-0.87.3</tag>
   </scm>
 
   <dependencies>
