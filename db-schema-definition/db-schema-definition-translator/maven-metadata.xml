@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>db-schema-definition</groupId>
+  <artifactId>db-schema-definition-translator</artifactId>
+  <versioning>
+    <versions>
+      <version>0.85-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20140314115747</lastUpdated>
+  </versioning>
+</metadata>

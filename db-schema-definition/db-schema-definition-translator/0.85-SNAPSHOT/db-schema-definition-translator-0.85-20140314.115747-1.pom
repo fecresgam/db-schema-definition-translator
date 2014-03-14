@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>db-schema-definition</groupId>
+  <artifactId>db-schema-definition-translator</artifactId>
+  <packaging>jar</packaging>
+  <version>0.85-SNAPSHOT</version>
+  <name>DB Schema Definition Translator</name>
+  <description>Data Base Schema Definition Translator</description>
+  <inceptionYear>2013</inceptionYear>
+  <licenses>
+    <license>
+      <name>GPL 2</name>
+      <url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <!-- github server corresponds to entry in ~/.m2/settings.xml -->
+    <github.global.server>github</github.global.server>
+  </properties>
+
+  <distributionManagement>
+      <repository>
+          <id>internal.repo</id>
+          <name>Temporary Staging Repository</name>
+          <url>file://${project.build.directory}/mvn-repo</url>
+      </repository>
+  </distributionManagement>
+
+  <scm>
+    <connection>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</connection>
+    <developerConnection>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</developerConnection>
+    <url>scm:git:git@github.com:fecresgam/db-schema-definition-translator.git</url>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr-3</artifactId>
+      <version>3.0.1</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>stringtemplate</artifactId>
+      <version>3.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>antlr3-maven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+                <execution>
+                    <id>default-execution</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>antlr</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <archive>
+                    <index>true</index>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <mainClass>com.ryoppei.dbsd.translator.DbsdConversor</mainClass>
+                        <packageName>com.ryoppei.dbsd.translator</packageName>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.4.1</version>
+        </plugin>
+
+        <plugin>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.7</version>
+            <configuration>
+                <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.8</version>
+            <configuration>
+                <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+                <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+                <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+                <includes><include>**/*</include></includes>
+                <repositoryOwner>fecresgam</repositoryOwner>               <!-- github username  -->
+                <repositoryName>db-schema-definition-translator</repositoryName>      <!-- github repo name -->
+            </configuration>
+            <executions>
+                <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+                <execution>
+                    <goals>
+                        <goal>site</goal>
+                    </goals>
+                    <phase>deploy</phase>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+
+</project>
