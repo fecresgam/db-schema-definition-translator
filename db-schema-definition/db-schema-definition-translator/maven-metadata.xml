@@ -4,8 +4,8 @@
   <artifactId>db-schema-definition-translator</artifactId>
   <versioning>
     <versions>
-      <version>0.86-SNAPSHOT</version>
+      <version>0.87.2-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20140314131055</lastUpdated>
+    <lastUpdated>20140314133221</lastUpdated>
   </versioning>
 </metadata>
