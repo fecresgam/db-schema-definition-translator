@@ -181,10 +181,10 @@ DECIMAL
   : ('0'..'9')+ '.' ('0'..'9')+
   ;
 
-SIGNED_DECIMAL : ('+'|'-')? DECIMAL
+SIGNED_DECIMAL : ('+'|'-') DECIMAL
                ;
 
-SIGNED_INT : ('+'|'-')? INT
+SIGNED_INT : ('+'|'-') INT
            ;
 
 WS  :   ( ' '
@@ -319,8 +319,10 @@ fragment t_data_rows returns [List<Data> result]
   ;
 
 fragment t_data_row returns [Data result]
-  | t=SIGNED_DECIMAL {result = new NumberData($t.text);}
+  : t=SIGNED_DECIMAL {result = new NumberData($t.text);}
   | t=SIGNED_INT     {result = new NumberData($t.text);}
+  | t=DECIMAL        {result = new NumberData($t.text);}
+  | t=INT            {result = new NumberData($t.text);}
   | s=string         {result = new TextData(s);}
   | NOW              {result = DateData.NOW;}
   | TRUE             {result = BooleanData.TRUE;}
