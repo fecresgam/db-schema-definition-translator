@@ -51,7 +51,7 @@ As you can see this is the format:
   * __"##     ##":__ The constraints header
   * Constraints: __"name | const_definition | options ;" :__ Defines a constraint.
       * Where "const_definition" could be:
-         * __IND(column):__ Defines an index".
+         * __IND(column *SORT-ORDER*):__ Defines an index using one or more columns. The sort-order (ASC or DESC) could be specified.
          * __PK(column_list):__ Defines a Primary Key constraint.
          * __UK(column_list):__ Defines a Unique constraint.
          * __CHK(column 'condition'):__ Defines a Check constraint.
@@ -69,12 +69,18 @@ As you can see this is the format:
   * __"//":__  One line comment
   * __"/* */":__ Multiline comment
 
+### Escape Characters ###
+Literal text could be escaped in table & column descriptions, text data and in the condition section of a check constrains.
+The escaping behaviour is the usual in java (i.e: "\\" => "\", "\'" => "'").
+
 ### Constant Values ###
 Some constant values are defined to use as column default value or in the "Table data rows" section.
   * __NULL:__ to be used with all data types.
   * __TRUE:__ to be used with boolean data type.
   * __FALSE:__ to be used with boolean data type.
   * __NOW:__ to be used with date data type. Similar to SYSDATE in ORACLE.
+
+
 
 
 
