@@ -71,7 +71,7 @@ As you can see this is the format:
 
 ### Escape Characters ###
 Literal text could be escaped in table & column descriptions, text data and in the condition section of a check constrains.
-The escaping behaviour is the usual in java (i.e: \\\\ becomes \ , \' becomes '^).
+The escaping behaviour is the usual in java (i.e: __\\\\__ becomes __\\__ , __\'__ becomes __'__).
 
 ### Constant Values ###
 Some constant values are defined to use as column default value or in the "Table data rows" section.
