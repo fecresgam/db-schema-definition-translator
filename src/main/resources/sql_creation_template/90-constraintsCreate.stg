@@ -81,4 +81,4 @@ column_list_ind(col)
 
 column_ind (col)
 ::=
-<< <col> <col.name> <if(col.orderType)> <col.orderType> <endif> >>
+<< <col.name> <if(col.orderType)> <col.orderType> <endif> >>
