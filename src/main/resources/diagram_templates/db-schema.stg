@@ -52,7 +52,7 @@ table(table) ::= <<
               style="filled";
               fillcolor=2;
               fontcolor=white;
-              fontsize=24,
+              fontsize=24;
               label="<table.name>";
 
               invisible2<table.name> [shape=point style=invis];
