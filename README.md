@@ -55,7 +55,7 @@ As you can see this is the format:
          * __PK(column_list):__ Defines a Primary Key constraint.
          * __UK(column_list):__ Defines a Unique constraint.
          * __CHK(column 'condition'):__ Defines a Check constraint.
-         * __FK(column_list)->other_user:other_table.(column_list):__ Defines a Foreign Key constraint.
+         * __FK(column_list)->other_user:other_table.(column_list):__ Defines a Foreign Key constraint. 'other_user:' is optional.
       * Where "options" could be:__
          * __USE_IND(name):__ Define a index used by a PK (only in PK constraints).
   * __"++     ++":__ The table data rows header. (Mandatory in Static tables).
