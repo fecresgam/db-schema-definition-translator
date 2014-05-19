@@ -142,6 +142,7 @@ SC : ';';
 CM : ',';
 DT : '.';
 AA : '->';
+US : ':';
 
 PK  : 'PK';
 UK  : 'UK';
@@ -284,6 +285,7 @@ fragment constraint returns [Constraint result]
   | i=ID I UK  OP cs=ids CP I SC  {result = new UniqueKeyConstraint($i.text, cs);}
   | i=ID I CHK OP c=ID cd=string CP I SC  {result = new CheckConstraint($i.text, $c.text, cd);}
   | i=ID I FK  OP cs=ids CP AA rt=ID DT OP rtc=ids CP I SC  {result = new ForeignKeyConstraint($i.text, cs, $rt.text, rtc);}
+  | i=ID I FK  OP cs=ids CP AA ru=ID US rt=ID DT OP rtc=ids CP I SC  {result = new ForeignKeyConstraint($i.text, cs,$ru.text, $rt.text, rtc);}
   ;
 
 

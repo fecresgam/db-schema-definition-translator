@@ -55,7 +55,7 @@ foreignKey(con, t)
 ::=
 << alter table <t.name> add constraint <con.name>
      foreign key <column_list(col=con.columns)>
-     references <con.referenceTable> <column_list(col=con.referenceColumns)>; >>
+     references <if (con.referenceUser)><con.referenceUser>:<endif><con.referenceTable> <column_list(col=con.referenceColumns)>; >>
 
 uniqueKey(con, t)
 ::=
@@ -64,6 +64,7 @@ uniqueKey(con, t)
 check(con, t)
 ::=
 << alter table <t.name> add constraint <con.name> check (<con.column> <con.condition>); >>
+
 
 
 column_list(col)

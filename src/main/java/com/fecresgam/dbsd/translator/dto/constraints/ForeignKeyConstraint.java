@@ -29,6 +29,7 @@ import java.util.List;
 public class ForeignKeyConstraint extends CommonConstraint
 {
     private List<String> columns;
+    private String referenceUser;
     private String referenceTable;
     private List<String> referenceColumns;
 
@@ -55,6 +56,33 @@ public class ForeignKeyConstraint extends CommonConstraint
 
     }
 
+
+    /**
+     * Creates a new Foreign Key
+     *
+     * @param name such information.
+     * @param columns such information.
+     * @param referenceUser such information
+     * @param referenceTable such information.
+     * @param referenceColumns such information.
+     */
+    public ForeignKeyConstraint(
+            final String name,
+            final List<String> columns,
+	        final String referenceUser,
+            final String referenceTable,
+            final List<String> referenceColumns)
+    {
+        super(name, ConstraintType.FOREIGN_KEY);
+
+        this.columns = columns;
+	    this.referenceUser = referenceUser;
+        this.referenceTable = referenceTable;
+        this.referenceColumns = referenceColumns;
+
+    }
+    
+
     /**
      * Retrieves the columns.
      *
@@ -63,6 +91,12 @@ public class ForeignKeyConstraint extends CommonConstraint
     public List<String> getColumns()
     {
         return columns;
+    }
+
+
+    public String getReferenceUser() 
+    {
+	return referenceUser;
     }
 
     /**
